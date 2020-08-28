@@ -16,8 +16,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "students")
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Id
+	
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	private int idStudent;
 	@Column(name = "nameStudent", nullable = false, length = 45)
 	private String nameStudent;
