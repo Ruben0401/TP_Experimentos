@@ -60,7 +60,7 @@ public class CoursesxTeacherController {
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
 		}
-		return "coursesxteacher/listCoursesxTeacher";
+		return "coursesxteacher/listCoursesxTeachers";
 	}
 
 	@RequestMapping("/delete/{id}")
@@ -74,6 +74,6 @@ public class CoursesxTeacherController {
 			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
 		}
 		model.addAttribute("listCoursesxTeachers", cxtS.list());
-		return "coursesxteacher/listCoursesxTeacher";
+		return "coursesxteacher/listCoursesxTeachers";
 	}
 }
