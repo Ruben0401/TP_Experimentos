@@ -151,10 +151,9 @@
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">Id</th>
+								<th scope="col">DNI</th>
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellido</th>
-								<th scope="col">DNI</th>
 								<th scope="col">Fecha de nacimiento</th>
 								<th scope="col">Fecha de admision</th>
 								<th scope="col">Operacion</th>
@@ -162,10 +161,9 @@
 						</thead>
 						<tbody>
 							<tr th:each="t: ${listTeachers}">
-								<td th:text="${t.idTeacher}"></td>
+								<td th:text="${t.dniTeacher}"></td>
 								<td th:text="${t.nameTeacher}"></td>
 								<td th:text="${t.lastnameTeacher}"></td>
-								<td th:text="${t.dniTeacher}"></td>
 								<td
 									th:text="${#dates.format(t.dateOfBirthTeacher,'dd/MM/yyyy')}"></td>
 								<td

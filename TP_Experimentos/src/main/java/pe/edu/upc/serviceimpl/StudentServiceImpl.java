@@ -20,7 +20,7 @@ public class StudentServiceImpl implements Serializable, IStudentService {
 
 	@Override
 	public int insert(Student student) {
-		int rpta = sR.searchStudent(student.getIdStudent());
+		int rpta = sR.searchStudent(student.getCodeStudent());
 		if (rpta == 0) {
 			sR.save(student);
 		}

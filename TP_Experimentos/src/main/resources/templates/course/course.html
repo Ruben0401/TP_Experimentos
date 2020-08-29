@@ -10,9 +10,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Libreria Panchito</title>
-<link rel="shortcut icon" href="/libreria/images/icon.ico" />
-<!-- Custom fonts for this tegmplate-->
+<title>2020</title>
+
+<!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
@@ -31,16 +31,16 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/authors/list}" >
+				th:href="@{/courses/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-book"></i>
+					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Libreria Panchito</div>
+				<div class="sidebar-brand-text mx-2">Matrícula UPC</div>
 			</a>
 
 			<!-- Divider -->
@@ -49,7 +49,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Menú</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -131,12 +131,11 @@
 				</nav>
 				<!-- End of Topbar -->
 
-			
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Cursos</h1>
+					<h1 class="h3 mb-4 text-gray-800">Curso</h1>
 
 					<hr class="sidebar-divider">
 					<div th:object="${course}" th:remove="tag">
@@ -148,71 +147,80 @@
 
 					<form th:action="@{/courses/save}" th:object="${course}"
 						method="post">
-						<div class="form-group row" style="display: none">
+						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">ID</label>
 							<div class="col-sm-6">
-								<input type="number"   th:field="*{idCourse}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+								<input type="text" th:field="*{idCourse}" class="form-control"
+									readonly th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idCourse')}"
 									th:errors="*{idCourse}"></small>
 							</div>
 						</div>
-
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre del Curso</label>
+							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
-								<input type="text"  th:field="*{nameCourse}"
-									class="form-control"
+								<input type="text" th:field="*{nameCourse}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameCourse')}"
 									th:errors="*{nameCourse}"></small>
 							</div>
 						</div>
-						
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Hora de inicio</label>
+							<label for="name" class="col-sm-2 col-form-label">Hora de
+								inicio</label>
 							<div class="col-sm-6">
-								<input type="time"  th:field="*{initalHour}"
-									class="form-control"
+								<input type="time" th:field="*{initalHourCourse}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('initalHour')}"
-									th:errors="*{initalHour}"></small>
+									th:if="${#fields.hasErrors('initalHourCourse')}"
+									th:errors="*{initalHourCourse}"></small>
 							</div>
 						</div>
-						
+
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Hora de Fin</label>
+							<label for="name" class="col-sm-2 col-form-label">Hora de
+								Fin</label>
 							<div class="col-sm-6">
-								<input type="time"  th:field="*{finalHour}"
-									class="form-control"
+								<input type="time" th:field="*{finalHourCourse}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('finalHour')}"
-									th:errors="*{finalHour}"></small>
+									th:if="${#fields.hasErrors('finalHourCourse')}"
+									th:errors="*{finalHourCourse}"></small>
 							</div>
 						</div>
-						
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Fecha
+								de apertura</label>
+							<div class="col-sm-6">
+								<input type="date" required pattern="yyyy-MM-dd"
+									th:field="*{dateOfOpeningCourse}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('dateOfOpeningCourse')}"
+									th:errors="*{dateOfOpeningCourse}"></small>
+							</div>
+						</div>
 						<div class="form-group row">
 							<div class="col-sm-6">
-							<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-							<a href="/courses/list" class="btn btn-danger">Cancelar</a>
+								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
+								<a href="/courses/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 					</form>
-				   <p th:text="${mensaje}" class="form-text text-success" style="color:Blue"></p>
+					<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+
+
+
 				</div>
+				<!-- /.container-fluid -->
 
-				
-			<!-- /.container-fluid -->
-		</div>
-	
-		<!-- End of Main Content -->
+			</div>
+			<!-- End of Main Content -->
 
-		<!-- Footer -->
+			<!-- Footer -->
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
@@ -247,15 +255,12 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual.</div>
+					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
-					<form id="logoutForm" th:action="@{/logout}" method="post">
-						<button class="btn btn-danger"
-							onclick="document.getElementById('logoutForm').submit();"
-							type="submit">Cerrar</button>
-						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/loan/new}">Cancel</button>
-					</form>
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/students/index}">Cerrar
+						Sesión</a>
 				</div>
 			</div>
 		</div>
@@ -264,6 +269,7 @@
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 	<!-- Core plugin JavaScript-->
 	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 

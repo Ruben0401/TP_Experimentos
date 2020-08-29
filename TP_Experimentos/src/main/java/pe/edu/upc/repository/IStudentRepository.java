@@ -9,6 +9,6 @@ import pe.edu.upc.entity.Student;
 
 @Repository
 public interface IStudentRepository extends JpaRepository<Student, Integer> {
-	@Query("SELECT COUNT(s.idStudent) FROM Student s WHERE s.idStudent=:idStudent")
-	public int searchStudent(@Param("idStudent") int id);
+	@Query("SELECT COUNT(s.codeStudent) FROM Student s WHERE s.codeStudent=:codeStudent")
+	public int searchStudent(@Param("codeStudent") String codigo);
 }

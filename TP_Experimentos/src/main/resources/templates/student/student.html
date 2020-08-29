@@ -49,7 +49,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Menú</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -148,14 +148,25 @@
 					<form th:action="@{/students/save}" th:object="${student}"
 						method="post">
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Código</label>
+							<label for="name" class="col-sm-2 col-form-label">ID</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{idStudent}"
-									class="form-control"
+									class="form-control" readonly
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idStudent')}"
 									th:errors="*{idStudent}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Código</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{codeStudent}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('codeStudent')}"
+									th:errors="*{codeStudent}"></small>
 							</div>
 						</div>
 						<div class="form-group row">

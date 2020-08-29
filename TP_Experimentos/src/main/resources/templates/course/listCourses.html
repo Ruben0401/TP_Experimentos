@@ -10,8 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Libreria Panchito</title>
-<link rel="shortcut icon" href="/libreria/images/icon.ico" />
+<title>2020</title>
+
 <!-- Custom fonts for this template-->
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -31,20 +31,23 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion"
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
+
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-			 href="#" >
+				th:href="@{/courses/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-book"></i>
+					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-2">Libreria Panchito</div>
+				<div class="sidebar-brand-text mx-2">Matrícula UPC</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
+
+
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -64,6 +67,11 @@
 						<a class="collapse-item" th:href="@{/courses/list}">Cursos</a>
 					</div>
 				</div></li>
+
+
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -118,7 +126,7 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="categories/index"
+								<a class="dropdown-item" href="students/index"
 									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
@@ -133,13 +141,8 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->				
-					<ul class="nav nav-tabs">
-					<li class="nav-item"><a th:href="@{/courses/list}" class="nav-link active">Cursos</a></li>
-					</ul>
-					
-					
-					<br>
+					<!-- Page Heading -->
+					<h1 class="h3 mb-4 text-gray-800">Cursos</h1>
 
 					<a th:href="@{/courses/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 
@@ -148,19 +151,22 @@
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nombre del Curso</th>
+								<th scope="col">Nombre</th>
 								<th scope="col">Hora de Inicio</th>
 								<th scope="col">Hora de Fin</th>
-								
+								<th scope="col">Fecha de apertura</th>
+								<th scope="col">Operacion</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="l: ${listCourses}">
-								<td th:text="${l.idCourse}"></td>
-								<td th:text="${l.nameCourse}"></td>
-								<td th:text="${l.initalHour}"></td>
-								<td th:text="${l.finalHour}"></td>
+							<tr th:each="c: ${listCourses}">
+								<td th:text="${c.nameCourse}"></td>
+								<td th:text="${c.initalHourCourse}"></td>
+								<td th:text="${c.finalHourCourse}"></td>
+								<td
+									th:text="${#dates.format(c.dateOfOpeningCourse,'dd/MM/yyyy')}"></td>
+								<td><a th:href="@{'/courses/delete/'+${c.idCourse}}"><i
+										class="iconf fa fa-trash" style="color: red"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -210,13 +216,10 @@
 				<div class="modal-body">Seleccione "Cerrar sesión" a
 					continuación si está listo para finalizar su sesión actual.</div>
 				<div class="modal-footer">
-					<form id="logoutForm" th:action="@{/logout}" method="post">
-						<button class="btn btn-danger"
-							onclick="document.getElementById('logoutForm').submit();"
-							type="submit">Cerrar</button>
-						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{/loans/list}">Cancel</button>
-					</form>
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/courses/index}">Cerrar
+						sesión</a>
 				</div>
 			</div>
 		</div>
