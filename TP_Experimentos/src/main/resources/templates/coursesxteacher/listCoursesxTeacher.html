@@ -33,10 +33,11 @@
 		<ul
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
+
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/students/list}">
+				th:href="@{/coursesxteachers/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -47,9 +48,11 @@
 			<hr class="sidebar-divider my-0">
 
 
+
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
+				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Menú</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -68,6 +71,11 @@
 							por docente</a>
 					</div>
 				</div></li>
+
+
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -114,7 +122,6 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
-
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -123,8 +130,8 @@
 									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
+								<a class="dropdown-item" href="students/index"
+									data-toggle="modal" data-target="#logoutModal"> <i
 									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Cerrar sesión
 								</a>
@@ -139,100 +146,31 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Alumno</h1>
+					<h1 class="h3 mb-4 text-gray-800">Cursos por docentes</h1>
+
+					<a th:href="@{/coursesxteachers/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
-					<div th:object="${student}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
-					</div>
 
-					<form th:action="@{/students/save}" th:object="${student}"
-						method="post">
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">ID</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{idStudent}"
-									class="form-control" readonly
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idStudent')}"
-									th:errors="*{idStudent}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Código</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{codeStudent}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('codeStudent')}"
-									th:errors="*{codeStudent}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nameStudent}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameStudent')}"
-									th:errors="*{nameStudent}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Apellido</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{lastnameStudent}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('lastnameStudent')}"
-									th:errors="*{lastnameStudent}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Fecha
-								de nacimiento</label>
-							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"
-									th:field="*{dateOfBirthStudent}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('dateOfBirthStudent')}"
-									th:errors="*{dateOfBirthStudent}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Fecha
-								de admision</label>
-							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"
-									th:field="*{dateOfAdmissionStudent}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('dateOfAdmissionStudent')}"
-									th:errors="*{dateOfAdmissionStudent}"></small>
-							</div>
-						</div>
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Curso</th>
+								<th scope="col">Docente</th>
+								<th scope="col">Operacion</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="cxt: ${listCoursesxTeachers}">
+								<td th:text="${cxt.course.nameCourse}"></td>
+								<td th:text="${cxt.teacher.nameTeacher}"></td>
+								<td><a th:href="@{'/coursesxteachers/delete/'+${cxt.idCoursesxTeacher}}"><i
+										class="iconf fa fa-trash" style="color: red"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
 
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/students/list" class="btn btn-danger">Cancelar</a>
-							</div>
-						</div>
-
-					</form>
-					<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-
-
+					<p th:text="${mensaje}" class="form-text text-success"></p>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -275,12 +213,12 @@
 					</button>
 				</div>
 				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual</div>
+					continuación si está listo para finalizar su sesión actual.</div>
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/students/index}">Cerrar
-						Sesión</a>
+					<a class="btn btn-primary" th:href="@{/courses/index}">Cerrar
+						sesión</a>
 				</div>
 			</div>
 		</div>
