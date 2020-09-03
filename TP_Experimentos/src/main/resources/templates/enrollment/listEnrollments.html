@@ -153,6 +153,39 @@
 
 					<a th:href="@{/enrollments/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 
+					<form th:action="@{/enrollments/search}" method="post"
+						th:object="${enrollment}">
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="typeProject"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><select id="items"
+											th:field="*{coursesxteacher.semesterCoursesxTeacher}">
+												<option value="2017 - 0">2017 - 0</option>
+												<option value="2017 - 1">2017 - 1</option>
+												<option value="2017 - 2">2017 - 2</option>
+												<option value="2018 - 0">2018 - 0</option>
+												<option value="2018 - 1">2018 - 1</option>
+												<option value="2018 - 2">2018 - 2</option>
+												<option value="2019 - 0">2019 - 0</option>
+												<option value="2019 - 1">2019 - 1</option>
+												<option value="2019 - 2">2019 - 2</option>
+												<option value="2020 - 0">2020 - 0</option>
+												<option value="2020 - 1">2020 - 1</option>
+												<option value="2020 - 2">2020 - 2</option>
+										</select></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/enrollments/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+
 					<hr class="sidebar-divider">
 
 					<table class="table table-striped">

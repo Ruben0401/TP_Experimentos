@@ -14,4 +14,6 @@ public interface IEnrollmentService {
 	public void delete(int idEnrollment);
 
 	Optional<Enrollment> searchId(int idEnrollment);
+
+	List<Enrollment> findSemesterCoursesxTeacherFull(String semesterCoursesxTeacher);
 }

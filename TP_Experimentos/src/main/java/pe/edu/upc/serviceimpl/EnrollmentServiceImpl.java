@@ -15,7 +15,7 @@ import pe.edu.upc.serviceinterface.IEnrollmentService;
 public class EnrollmentServiceImpl implements IEnrollmentService, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private IEnrollmentRepository eR;
 
@@ -38,5 +38,12 @@ public class EnrollmentServiceImpl implements IEnrollmentService, Serializable {
 	public Optional<Enrollment> searchId(int idEnrollment) {
 		return eR.findById(idEnrollment);
 	}
+
+	@Override
+	public List<Enrollment> findSemesterCoursesxTeacherFull(String semesterCoursesxTeacher) {
+		return eR.findBysemesterCoursesxTeacher(semesterCoursesxTeacher);
+	}
+
+	
 
 }

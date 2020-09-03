@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class EnrollmentController {
 	@GetMapping("/list")
 	public String listEnrollment(Model model) {
 		try {
-			// model.addAttribute("coursesxteacher", new CoursesxTeacher());// necesario para el buscar
+			model.addAttribute("enrollment", new Enrollment());
 			model.addAttribute("listEnrollments", eS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -68,6 +69,7 @@ public class EnrollmentController {
 	@RequestMapping("/delete/{id}")
 	public String deleteEnrollment(Model model, @PathVariable(value = "id") int id) {
 		try {
+			model.addAttribute("enrollment", new Enrollment());
 			if (id > 0) {
 				eS.delete(id);
 			}
@@ -92,5 +94,17 @@ public class EnrollmentController {
 			model.addAttribute("enrollment", objPro.get());
 			return "enrollment/enrollment";
 		}
+	}
+
+	@RequestMapping("/search")
+	public String searchEnrollments(Model model, @Validated Enrollment enrollment) throws Exception {
+		List<Enrollment> listEnrollments;
+		listEnrollments = eS
+				.findSemesterCoursesxTeacherFull(enrollment.getCoursesxteacher().getSemesterCoursesxTeacher());
+		if (listEnrollments.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
+		}
+		model.addAttribute("listEnrollments", listEnrollments);
+		return "enrollment/listEnrollments";
 	}
 }
