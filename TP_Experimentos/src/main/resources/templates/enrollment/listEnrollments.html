@@ -37,7 +37,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/coursesxteachers/list}">
+				th:href="@{/enrollments/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
@@ -71,7 +71,7 @@
 							por docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/enrollments/list}">Matricula</a>
+						<a class="collapse-item" th:href="@{/enrollments/list}">Matrícula</a>
 					</div>
 				</div></li>
 
@@ -149,15 +149,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<ul class="nav nav-tabs">
-						<li class="nav-item"><a th:href="@{/enrollments/list/}"
-							class="nav-link active">Matricula</a></li>
-						<li class="nav-item"><a th:href="@{/enrollments/list/}"
-							class="nav-link">Reporte</a></li>
-					</ul>
-					
-					
-					<h1 class="h3 mb-4 text-gray-800">Matriculas</h1>
+					<h1 class="h3 mb-4 text-gray-800">Matrículas</h1>
 
 					<a th:href="@{/enrollments/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 
@@ -167,16 +159,29 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Curso</th>
-								<th scope="col">Estudiante</th>
-								<th scope="col">Operacion</th>
+								<th scope="col">Docente</th>
+								<th scope="col">Hora de Inicio</th>
+								<th scope="col">Hora de Fin</th>
+								<th scope="col">Semestre</th>
+								<th scope="col">Alumno</th>
+								<th colspan="2" scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="e: ${listEnrollments}">
 								<td th:text="${e.coursesxteacher.course.nameCourse}"></td>
-								<td th:text="${e.student.nameStudent}"></td>
-								<td><a th:href="@{'/enrollments/delete/'+${e.idEnrollment}}"><i
-										class="iconf fa fa-trash" style="color: red"></i></a></td>
+								<td
+									th:text="${e.coursesxteacher.teacher.nameTeacher + ' ' + e.coursesxteacher.teacher.lastnameTeacher}"></td>
+								<td th:text="${e.coursesxteacher.initalHourCoursesxTeacher}"></td>
+								<td th:text="${e.coursesxteacher.finalHourCoursesxTeacher}"></td>
+								<td th:text="${e.coursesxteacher.semesterCoursesxTeacher}"></td>
+								<td
+									th:text="${e.student.nameStudent + ' ' + e.student.lastnameStudent}"></td>
+								<td><a
+									th:href="@{'/enrollments/delete/'+${e.idEnrollment}}"><i
+										class="iconf fa fa-trash" style="color: red"></i></a>&nbsp;&nbsp;<a
+									th:href="@{'/enrollments/irupdate/'+${e.idEnrollment}}"><i
+										class="iconf fa fa-pen" style="color: blue"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

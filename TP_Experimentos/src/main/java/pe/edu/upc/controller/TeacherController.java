@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Teacher;
 import pe.edu.upc.serviceinterface.ITeacherService;
@@ -30,17 +33,10 @@ public class TeacherController {
 		if (result.hasErrors()) {
 			return "teacher/teacher";
 		} else {
-			int rpta = tS.insert(teacher);
-			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe un docente con ese DNI");
-				return "teacher/teacher";
-			} else {
-				tS.insert(teacher);
-				model.addAttribute("listTeachers", tS.list());
-				return "teacher/listTeachers";
-			}
+			tS.insert(teacher);
+			model.addAttribute("listTeachers", tS.list());
+			return "teacher/listTeachers";
 		}
-
 	}
 
 	@GetMapping("/list")
@@ -65,6 +61,18 @@ public class TeacherController {
 		}
 		model.addAttribute("listTeachers", tS.list());
 		return "teacher/listTeachers";
+	}
 
+	@RequestMapping("/irupdate/{id}")
+	public String irupdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+		Optional<Teacher> objPro = tS.searchId(id);
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
+			return "redirect:/teacher/list";
+		} else {
+			model.addAttribute("listTeachers", tS.list());
+			model.addAttribute("teacher", objPro.get());
+			return "teacher/modTeacher";
+		}
 	}
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class EnrollmentServiceImpl implements IEnrollmentService, Serializable {
 	private IEnrollmentRepository eR;
 
 	@Override
-	public void insert(Enrollment enroll) {
-		eR.save(enroll);
+	public void insert(Enrollment enrollment) {
+		eR.save(enrollment);
 	}
 
 	@Override
@@ -31,6 +32,11 @@ public class EnrollmentServiceImpl implements IEnrollmentService, Serializable {
 	@Override
 	public void delete(int idEnrollment) {
 		eR.deleteById(idEnrollment);
+	}
+
+	@Override
+	public Optional<Enrollment> searchId(int idEnrollment) {
+		return eR.findById(idEnrollment);
 	}
 
 }

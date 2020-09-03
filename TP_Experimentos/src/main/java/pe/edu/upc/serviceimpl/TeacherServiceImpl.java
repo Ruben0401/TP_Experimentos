@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,8 @@ public class TeacherServiceImpl implements Serializable, ITeacherService {
 	private ITeacherRepository tR;
 
 	@Override
-	public int insert(Teacher teacher) {
-		int rpta = tR.searchTeacher(teacher.getDniTeacher());
-		if (rpta == 0) {
-			tR.save(teacher);
-		}
-		return rpta;
+	public void insert(Teacher teacher) {
+		tR.save(teacher);
 	}
 
 	@Override
@@ -35,6 +32,11 @@ public class TeacherServiceImpl implements Serializable, ITeacherService {
 	@Override
 	public void delete(int idTeacher) {
 		tR.deleteById(idTeacher);
+	}
+
+	@Override
+	public Optional<Teacher> searchId(int idTeacher) {
+		return tR.findById(idTeacher);
 	}
 
 }

@@ -71,7 +71,7 @@
 							por docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/enrollments/list}">Matricula</a>
+						<a class="collapse-item" th:href="@{/enrollments/list}">Matrícula</a>
 					</div>
 				</div></li>
 
@@ -158,17 +158,17 @@
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">DNI</th>
+								<th scope="col">Código</th>
 								<th scope="col">Nombre</th>
 								<th scope="col">Apellido</th>
 								<th scope="col">Fecha de nacimiento</th>
-								<th scope="col">Fecha de admision</th>
-								<th scope="col">Operacion</th>
+								<th scope="col">Fecha de admisión</th>
+								<th colspan="2" scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="t: ${listTeachers}">
-								<td th:text="${t.dniTeacher}"></td>
+								<td th:text="${t.idTeacher}"></td>
 								<td th:text="${t.nameTeacher}"></td>
 								<td th:text="${t.lastnameTeacher}"></td>
 								<td
@@ -176,7 +176,9 @@
 								<td
 									th:text="${#dates.format(t.dateOfAdmissionTeacher,'dd/MM/yyyy')}"></td>
 								<td><a th:href="@{'/teachers/delete/'+${t.idTeacher}}"><i
-										class="iconf fa fa-trash" style="color: red"></i></a></td>
+										class="iconf fa fa-trash" style="color: red"></i></a>&nbsp;&nbsp;<a
+									th:href="@{'/teachers/irupdate/'+${t.idTeacher}}"><i
+										class="iconf fa fa-pen" style="color: blue"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

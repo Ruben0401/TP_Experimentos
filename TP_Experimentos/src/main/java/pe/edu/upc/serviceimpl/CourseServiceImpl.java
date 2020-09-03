@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,11 @@ public class CourseServiceImpl implements Serializable, ICourseService {
 	@Override
 	public void delete(int idCourse) {
 		cR.deleteById(idCourse);
+	}
+
+	@Override
+	public Optional<Course> searchId(int idCourse) {
+		return cR.findById(idCourse);
 	}
 
 }

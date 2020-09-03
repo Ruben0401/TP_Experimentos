@@ -71,7 +71,7 @@
 							por docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/enrollments/list}">Matricula</a>
+						<a class="collapse-item" th:href="@{/enrollments/list}">Matrícula</a>
 					</div>
 				</div></li>
 
@@ -159,21 +159,16 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Nombre</th>
-								<th scope="col">Hora de Inicio</th>
-								<th scope="col">Hora de Fin</th>
-								<th scope="col">Fecha de apertura</th>
-								<th scope="col">Operacion</th>
+								<th colspan="2" scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="c: ${listCourses}">
 								<td th:text="${c.nameCourse}"></td>
-								<td th:text="${c.initalHourCourse}"></td>
-								<td th:text="${c.finalHourCourse}"></td>
-								<td
-									th:text="${#dates.format(c.dateOfOpeningCourse,'dd/MM/yyyy')}"></td>
 								<td><a th:href="@{'/courses/delete/'+${c.idCourse}}"><i
-										class="iconf fa fa-trash" style="color: red"></i></a></td>
+										class="iconf fa fa-trash" style="color: red"></i></a>&nbsp;&nbsp;<a
+									th:href="@{'/courses/irupdate/'+${c.idCourse}}"><i
+										class="iconf fa fa-pen" style="color: blue"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

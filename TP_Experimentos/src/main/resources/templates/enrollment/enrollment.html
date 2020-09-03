@@ -68,7 +68,7 @@
 							por docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/enrollments/list}">Matricula</a>
+						<a class="collapse-item" th:href="@{/enrollments/list}">Matrícula</a>
 					</div>
 				</div></li>
 
@@ -142,7 +142,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Matricula</h1>
+					<h1 class="h3 mb-4 text-gray-800">Matrícula</h1>
 
 					<hr class="sidebar-divider">
 					<div th:object="${enrollment}" th:remove="tag">
@@ -152,8 +152,8 @@
 						</ul>
 					</div>
 
-					<form th:action="@{/enrollments/save}"
-						th:object="${enrollment}" method="post">
+					<form th:action="@{/enrollments/save}" th:object="${enrollment}"
+						method="post">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">ID</label>
 							<div class="col-sm-6">
@@ -168,10 +168,12 @@
 						<div class="form-group row">
 							<label for="course" class="col-sm-2 col-form-label">Curso</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{coursesxteacher.idCoursesxTeacher}">
-									<option th:each="c: ${listCoursesxTeacher}" th:value="${c.idCoursesxTeacher}"
-										th:text="${c.idCoursesxTeacher + ' ' + c.course.nameCourse}"
-										th:selected="(${c.idCoursesxTeacher} == *{coursesxteacher.idCoursesxTeacher})"></option>
+								<select class="form-control"
+									th:field="*{coursesxteacher.idCoursesxTeacher}">
+									<option th:each="cxt: ${listCoursesxTeacher}"
+										th:value="${cxt.idCoursesxTeacher}"
+										th:text="${cxt.course.nameCourse + ' - ' + cxt.teacher.nameTeacher + ' ' + cxt.teacher.lastnameTeacher + ' - ' + cxt.initalHourCoursesxTeacher + ' - ' + cxt.finalHourCoursesxTeacher + ' - ' + cxt.semesterCoursesxTeacher}"
+										th:selected="(${cxt.idCoursesxTeacher} == *{coursesxteacher.idCoursesxTeacher})"></option>
 								</select>
 							</div>
 						</div>
@@ -187,8 +189,9 @@
 						</div>
 						<div class="form-group row">
 							<div class="col-sm-6">
-								<input type="submit" value="Matricular" class="btn btn-secondary"></input>
-								<a href="/enrollments/list" class="btn btn-danger">Cancelar</a>
+								<input type="submit" value="Matricular"
+									class="btn btn-secondary"></input> <a href="/enrollments/list"
+									class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 					</form>

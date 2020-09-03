@@ -68,7 +68,7 @@
 							por docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/enrollments/list}">Matricula</a>
+						<a class="collapse-item" th:href="@{/enrollments/list}">Matrícula</a>
 					</div>
 				</div></li>
 
@@ -172,41 +172,6 @@
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameCourse')}"
 									th:errors="*{nameCourse}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Hora de
-								inicio</label>
-							<div class="col-sm-6">
-								<input type="time" th:field="*{initalHourCourse}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('initalHourCourse')}"
-									th:errors="*{initalHourCourse}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Hora de
-								Fin</label>
-							<div class="col-sm-6">
-								<input type="time" th:field="*{finalHourCourse}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('finalHourCourse')}"
-									th:errors="*{finalHourCourse}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Fecha
-								de apertura</label>
-							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"
-									th:field="*{dateOfOpeningCourse}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('dateOfOpeningCourse')}"
-									th:errors="*{dateOfOpeningCourse}"></small>
 							</div>
 						</div>
 						<div class="form-group row">

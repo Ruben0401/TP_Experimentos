@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import pe.edu.upc.serviceinterface.ICoursesxTeacherService;
 public class CoursesxTeacherServiceImpl implements ICoursesxTeacherService, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private ICoursesxTeacherRepository cxtR;
 
@@ -31,6 +32,11 @@ public class CoursesxTeacherServiceImpl implements ICoursesxTeacherService, Seri
 	@Override
 	public void delete(int idCoursesxTeacher) {
 		cxtR.deleteById(idCoursesxTeacher);
+	}
+
+	@Override
+	public Optional<CoursesxTeacher> searchId(int idCoursesxTeacher) {
+		return cxtR.findById(idCoursesxTeacher);
 	}
 
 }

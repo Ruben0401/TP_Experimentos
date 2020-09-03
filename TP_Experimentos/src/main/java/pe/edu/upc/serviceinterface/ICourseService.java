@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceinterface;
 
 import java.util.List;
+import java.util.Optional;
 
 import pe.edu.upc.entity.Course;
 
@@ -11,4 +12,6 @@ public interface ICourseService {
 	List<Course> list();
 
 	public void delete(int idCourse);
+	
+	Optional<Course> searchId(int idCourse);
 }

@@ -5,12 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,7 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Min(value = 10000000, message = "El DNI debe ser de 8 dígitos")
+	@Max(value = 99999999, message = "El DNI debe ser de 8 dígitos")
 	private int idTeacher;
 	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
 	@Column(name = "nameTeacher", nullable = false, length = 45)
@@ -27,10 +27,6 @@ public class Teacher implements Serializable {
 	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El apellido solo puede tener letras")
 	@Column(name = "lastnameTeacher", nullable = false, length = 45)
 	private String lastnameTeacher;
-	@Pattern(regexp = "[0-9]+", message = "El DNI solo puede tener números")
-	@Size(min = 8, max = 8, message = "El DNI solo puede tener 8 números")
-	@Column(name = "dniTeacher", nullable = false, length = 45)
-	private String dniTeacher;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirthTeacher;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -38,16 +34,14 @@ public class Teacher implements Serializable {
 
 	public Teacher() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Teacher(int idTeacher, String nameTeacher, String lastnameTeacher, String dniTeacher,
-			Date dateOfBirthTeacher, Date dateOfAdmissionTeacher) {
+	public Teacher(int idTeacher, String nameTeacher, String lastnameTeacher, Date dateOfBirthTeacher,
+			Date dateOfAdmissionTeacher) {
 		super();
 		this.idTeacher = idTeacher;
 		this.nameTeacher = nameTeacher;
 		this.lastnameTeacher = lastnameTeacher;
-		this.dniTeacher = dniTeacher;
 		this.dateOfBirthTeacher = dateOfBirthTeacher;
 		this.dateOfAdmissionTeacher = dateOfAdmissionTeacher;
 	}
@@ -74,14 +68,6 @@ public class Teacher implements Serializable {
 
 	public void setLastnameTeacher(String lastnameTeacher) {
 		this.lastnameTeacher = lastnameTeacher;
-	}
-
-	public String getDniTeacher() {
-		return dniTeacher;
-	}
-
-	public void setDniTeacher(String dniTeacher) {
-		this.dniTeacher = dniTeacher;
 	}
 
 	public Date getDateOfBirthTeacher() {

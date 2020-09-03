@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "coursesxteachers")
@@ -20,47 +19,36 @@ public class CoursesxTeacher implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCoursesxTeacher;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idCourse")
 	private Course course;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idTeacher")
 	private Teacher teacher;
 
-	@Column(name = "semester", nullable = false, length = 10)
-	private String semester;
-	
-	
+	@Column(name = "semesterCoursesxTeacher", nullable = false, length = 10)
+	private String semesterCoursesxTeacher;
+	@Column(name = "initalHourCoursesxTeacher", nullable = false, length = 20)
+	private String initalHourCoursesxTeacher;
+	@Column(name = "finalHourCoursesxTeacher", nullable = false, length = 20)
+	private String finalHourCoursesxTeacher;
+
 	public CoursesxTeacher() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	public CoursesxTeacher(int idCoursesxTeacher, Course course, Teacher teacher, String semester) {
+	public CoursesxTeacher(int idCoursesxTeacher, Course course, Teacher teacher, String semesterCoursesxTeacher,
+			String initalHourCoursesxTeacher, String finalHourCoursesxTeacher) {
 		super();
 		this.idCoursesxTeacher = idCoursesxTeacher;
 		this.course = course;
 		this.teacher = teacher;
-		this.semester = semester;
+		this.semesterCoursesxTeacher = semesterCoursesxTeacher;
+		this.initalHourCoursesxTeacher = initalHourCoursesxTeacher;
+		this.finalHourCoursesxTeacher = finalHourCoursesxTeacher;
 	}
-
-
-
-	public String getSemester() {
-		return semester;
-	}
-
-
-
-	public void setSemester(String semester) {
-		this.semester = semester;
-	}
-
-
 
 	public int getIdCoursesxTeacher() {
 		return idCoursesxTeacher;
@@ -84,6 +72,30 @@ public class CoursesxTeacher implements Serializable {
 
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+
+	public String getSemesterCoursesxTeacher() {
+		return semesterCoursesxTeacher;
+	}
+
+	public void setSemesterCoursesxTeacher(String semesterCoursesxTeacher) {
+		this.semesterCoursesxTeacher = semesterCoursesxTeacher;
+	}
+
+	public String getInitalHourCoursesxTeacher() {
+		return initalHourCoursesxTeacher;
+	}
+
+	public void setInitalHourCoursesxTeacher(String initalHourCoursesxTeacher) {
+		this.initalHourCoursesxTeacher = initalHourCoursesxTeacher;
+	}
+
+	public String getFinalHourCoursesxTeacher() {
+		return finalHourCoursesxTeacher;
+	}
+
+	public void setFinalHourCoursesxTeacher(String finalHourCoursesxTeacher) {
+		this.finalHourCoursesxTeacher = finalHourCoursesxTeacher;
 	}
 
 }
