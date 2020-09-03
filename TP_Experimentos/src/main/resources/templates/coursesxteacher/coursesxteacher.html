@@ -180,7 +180,7 @@
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{teacher.idTeacher}">
 									<option th:each="t: ${listTeachers}" th:value="${t.idTeacher}"
-										th:text="${t.nameTeacher} + ' ' + ${t.lastnameTeacher}"
+										th:text="${t.nameTeacher + ' ' + t.lastnameTeacher}"
 										th:selected="(${t.idTeacher} == *{teacher.idTeacher})"></option>
 								</select>
 							</div>

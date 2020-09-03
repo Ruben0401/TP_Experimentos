@@ -171,7 +171,7 @@
 							<tr th:each="cxt: ${listCoursesxTeachers}">
 								<td th:text="${cxt.course.nameCourse}"></td>
 								<td
-									th:text="${cxt.teacher.nameTeacher} + ' ' + ${cxt.teacher.lastnameTeacher}"></td>
+									th:text="${cxt.teacher.nameTeacher + ' ' + cxt.teacher.lastnameTeacher}"></td>
 								<td th:text="${cxt.initalHourCoursesxTeacher}"></td>
 								<td th:text="${cxt.finalHourCoursesxTeacher}"></td>
 								<td th:text="${cxt.semesterCoursesxTeacher}"></td>
