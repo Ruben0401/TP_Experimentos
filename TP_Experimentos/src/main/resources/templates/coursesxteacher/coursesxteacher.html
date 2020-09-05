@@ -55,16 +55,16 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/students/list}">Alumnos</a>
+						<a class="collapse-item" th:href="@{/students/list}">Alumno</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/teachers/list}">Docentes</a>
+						<a class="collapse-item" th:href="@{/courses/list}">Curso</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/courses/list}">Cursos</a>
+						<a class="collapse-item" th:href="@{/teachers/list}">Docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/coursesxteachers/list}">Cursos
+						<a class="collapse-item" th:href="@{/coursesxteachers/list}">Curso
 							por docente</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -155,7 +155,7 @@
 					<form th:action="@{/coursesxteachers/save}"
 						th:object="${coursesxteacher}" method="post">
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">ID</label>
+							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{idCoursesxTeacher}"
 									class="form-control" readonly
@@ -166,7 +166,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="course" class="col-sm-2 col-form-label">Curso</label>
+							<label for="course" class="col-sm-2 col-form-label">Curso:</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{course.idCourse}">
 									<option th:each="c: ${listCourses}" th:value="${c.idCourse}"
@@ -176,7 +176,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="teacher" class="col-sm-2 col-form-label">Docente</label>
+							<label for="teacher" class="col-sm-2 col-form-label">Docente:</label>
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{teacher.idTeacher}">
 									<option th:each="t: ${listTeachers}" th:value="${t.idTeacher}"
@@ -187,7 +187,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Hora de
-								inicio</label>
+								inicio:</label>
 							<div class="col-sm-6">
 								<input type="time" th:field="*{initalHourCoursesxTeacher}"
 									class="form-control"
@@ -199,7 +199,7 @@
 						</div>
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Hora de
-								Fin</label>
+								fin:</label>
 							<div class="col-sm-6">
 								<input type="time" th:field="*{finalHourCoursesxTeacher}"
 									class="form-control"
@@ -210,7 +210,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Semestre</label>
+							<label for="name" class="col-sm-2 col-form-label">Semestre:</label>
 							<div class="col-sm-6">
 								<select id="items" th:field="*{semesterCoursesxTeacher}">
 									<option value="2017 - 0">2017 - 0</option>
