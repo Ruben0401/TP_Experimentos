@@ -18,8 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Min(value = 201700000, message = "El código debe ser mayor o igual que 2017")
-	@Max(value = 201799999, message = "El código debe ser menor o igual que 2017")
+	//@Min(value = 201700000, message = "El código debe ser mayor o igual que 2017")
+	//@Max(value = 201799999, message = "El código debe ser menor o igual que 2017")
 	private int idStudent;
 	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
 	@Column(name = "nameStudent", nullable = false, length = 45)

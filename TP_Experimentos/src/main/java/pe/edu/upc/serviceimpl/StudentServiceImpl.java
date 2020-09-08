@@ -39,4 +39,9 @@ public class StudentServiceImpl implements Serializable, IStudentService {
 		return sR.findById(idStudent);
 	}
 
+	@Override
+	public List<Student> findNameStudentFull(String nameStudent) {
+		return sR.findBynameStudent(nameStudent);
+	}
+
 }

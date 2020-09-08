@@ -14,4 +14,7 @@ public interface IStudentService {
 	public void delete(int idStudent);
 
 	Optional<Student> searchId(int idStudent);
+
+	List<Student> findNameStudentFull(String nameStudent);
+
 }
