@@ -14,4 +14,6 @@ public interface ITeacherService {
 	public void delete(int idTeacher);
 
 	Optional<Teacher> searchId(int idTeacher);
+
+	List<Teacher> findNameTeacherFull(String nameTeacher);
 }

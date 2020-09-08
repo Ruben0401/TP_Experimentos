@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class CourseController {
 	@GetMapping("/list")
 	public String listCourses(Model model) {
 		try {
+			model.addAttribute("course", new Course());
 			model.addAttribute("listCourses", cS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -59,6 +61,7 @@ public class CourseController {
 	@RequestMapping("/delete/{id}")
 	public String deleteCourse(Model model, @PathVariable(value = "id") int id) {
 		try {
+			model.addAttribute("course", new Course());
 			if (id > 0) {
 				cS.delete(id);
 			}
@@ -81,5 +84,16 @@ public class CourseController {
 			model.addAttribute("course", objPro.get());
 			return "course/course";
 		}
+	}
+
+	@RequestMapping("/search")
+	public String searchCourses(Model model, @Validated Course course) throws Exception {
+		List<Course> listCourses;
+		listCourses = cS.findNameCourseFull(course.getNameCourse());
+		if (listCourses.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
+		}
+		model.addAttribute("listCourses", listCourses);
+		return "course/listCourses";
 	}
 }

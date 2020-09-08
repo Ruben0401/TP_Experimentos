@@ -18,8 +18,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Teacher implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Min(value = 10000000, message = "El DNI debe ser de 8 dígitos")
-	@Max(value = 99999999, message = "El DNI debe ser de 8 dígitos")
+	//@Min(value = 10000000, message = "El DNI debe ser de 8 dígitos")
+	//@Max(value = 99999999, message = "El DNI debe ser de 8 dígitos")
 	private int idTeacher;
 	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
 	@Column(name = "nameTeacher", nullable = false, length = 45)

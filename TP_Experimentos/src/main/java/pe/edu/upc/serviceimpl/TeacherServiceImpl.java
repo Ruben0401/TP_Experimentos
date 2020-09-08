@@ -39,4 +39,9 @@ public class TeacherServiceImpl implements Serializable, ITeacherService {
 		return tR.findById(idTeacher);
 	}
 
+	@Override
+	public List<Teacher> findNameTeacherFull(String nameTeacher) {
+		return tR.findBynameTeacher(nameTeacher);
+	}
+
 }

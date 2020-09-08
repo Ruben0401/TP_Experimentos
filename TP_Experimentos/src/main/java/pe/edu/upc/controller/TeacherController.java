@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class TeacherController {
 	@GetMapping("/list")
 	public String listTeachers(Model model) {
 		try {
+			model.addAttribute("teacher", new Teacher());
 			model.addAttribute("listTeachers", tS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -52,6 +54,7 @@ public class TeacherController {
 	@RequestMapping("/delete/{id}")
 	public String deleteTeacher(Model model, @PathVariable(value = "id") int id) {
 		try {
+			model.addAttribute("teacher", new Teacher());
 			if (id > 0) {
 				tS.delete(id);
 			}
@@ -74,5 +77,16 @@ public class TeacherController {
 			model.addAttribute("teacher", objPro.get());
 			return "teacher/modTeacher";
 		}
+	}
+
+	@RequestMapping("/search")
+	public String searchTeachers(Model model, @Validated Teacher teacher) throws Exception {
+		List<Teacher> listTeachers;
+		listTeachers = tS.findNameTeacherFull(teacher.getNameTeacher());
+		if (listTeachers.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
+		}
+		model.addAttribute("listTeachers", listTeachers);
+		return "teacher/listTeachers";
 	}
 }

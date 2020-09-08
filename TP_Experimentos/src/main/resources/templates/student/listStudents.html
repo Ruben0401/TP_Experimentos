@@ -39,7 +39,8 @@
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				th:href="@{/students/list}">
-				<div class="sidebar-brand-icon rotate-n-15" style="margin-left:23px;">
+				<div class="sidebar-brand-icon rotate-n-15"
+					style="margin-left: 23px;">
 					<i class="fas fa-book"></i>
 				</div>
 				<div class="sidebar-brand-text mx-2">Matrícula UPC</div>
@@ -153,7 +154,7 @@
 					<h1 class="h3 mb-4 text-gray-800">Alumnos</h1>
 
 					<a th:href="@{/students/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
-					
+
 					<form th:action="@{/students/search}" method="post"
 						th:object="${student}">
 						<div class="form-group">
@@ -164,7 +165,8 @@
 											class="col-sm-2 col-form-label">Buscar:</label></td>
 										<td><input type="text" class="form-control"
 											autocomplete="off" th:field="*{nameStudent}" id="nameStudent"
-											placeholder="Nombre Alumno"></input></td>
+											placeholder="Nombre(s) o Apellido(s)" required="required"
+											pattern="[a-zA-Z]{3,20}"></input></td>
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
@@ -174,7 +176,7 @@
 							</table>
 						</div>
 					</form>
-					
+
 					<hr class="sidebar-divider">
 
 					<table class="table table-striped">

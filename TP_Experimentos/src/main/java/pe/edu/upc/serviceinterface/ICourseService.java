@@ -12,6 +12,8 @@ public interface ICourseService {
 	List<Course> list();
 
 	public void delete(int idCourse);
-	
+
 	Optional<Course> searchId(int idCourse);
+
+	List<Course> findNameCourseFull(String nameCourse);
 }

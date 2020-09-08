@@ -43,4 +43,9 @@ public class CourseServiceImpl implements Serializable, ICourseService {
 		return cR.findById(idCourse);
 	}
 
+	@Override
+	public List<Course> findNameCourseFull(String nameCourse) {
+		return cR.findBynameCourse(nameCourse);
+	}
+
 }
