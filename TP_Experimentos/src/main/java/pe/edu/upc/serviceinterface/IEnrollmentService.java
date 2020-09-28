@@ -7,7 +7,7 @@ import pe.edu.upc.entity.Enrollment;
 
 public interface IEnrollmentService {
 
-	public void insert(Enrollment enrollment);
+	public int insert(Enrollment enrollment);
 
 	List<Enrollment> list();
 

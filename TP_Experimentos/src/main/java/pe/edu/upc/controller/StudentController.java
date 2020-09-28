@@ -35,9 +35,16 @@ public class StudentController {
 			model.addAttribute("mensaje", "Ya existe un alumno con ese código");
 			return "student/student";
 		} else {
-			sS.insert(student);
-			model.addAttribute("listStudents", sS.list());
-			return "student/listStudents";
+			
+			try {
+				sS.insert(student);
+				model.addAttribute("listStudents", sS.list());
+				return "student/listStudents";
+			} catch (Exception e) {
+				model.addAttribute("mensaje", "Codigo de alumno ya existe");
+				model.addAttribute("student", new Student());
+				return "student/student";
+			}
 		}
 	}
 

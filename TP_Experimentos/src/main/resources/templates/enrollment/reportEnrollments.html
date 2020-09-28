@@ -150,17 +150,17 @@
 				<div class="container-fluid">
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a th:href="@{/enrollments/list/}"
-							class="nav-link active">Matricula</a></li>
+							class="nav-link ">Matricula</a></li>
 						<li class="nav-item"><a th:href="@{/coursesxteachers/reports/}"
-							class="nav-link">Reporte</a></li>
+							class="nav-link active">Reporte</a></li>
 					</ul>
 					<!-- Page Heading -->
 					<br>
-					<h1 class="h3 mb-4 text-gray-800">Matrículas</h1>
+					<h1 class="h3 mb-4 text-gray-800">Reporte por Semestre</h1>
+					
 
-					<a th:href="@{/enrollments/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
-
-					<form th:action="@{/enrollments/search}" method="post"
+					<hr class="sidebar-divider">
+					<form th:action="@{/coursesxteachers/reports1/}" method="post"
 						th:object="${enrollment}">
 						<div class="form-group">
 							<table>
@@ -186,42 +186,25 @@
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
-										<td><a href="/enrollments/list" class="btn btn-danger">Limpiar</a></td>
+										<td><a href="/coursesxteachers/reports" class="btn btn-danger">Limpiar</a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</form>
-
-					<hr class="sidebar-divider">
-
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Curso</th>
 								<th scope="col">Docente</th>
-								<th scope="col">Hora de inicio</th>
-								<th scope="col">Hora de fin</th>
 								<th scope="col">Semestre</th>
-								<th scope="col">Alumno</th>
-								<th colspan="2" scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="e: ${listEnrollments}">
-								<td th:text="${e.coursesxteacher.course.nameCourse}"></td>
-								<td
-									th:text="${e.coursesxteacher.teacher.nameTeacher + ' ' + e.coursesxteacher.teacher.lastnameTeacher}"></td>
-								<td th:text="${e.coursesxteacher.initalHourCoursesxTeacher}"></td>
-								<td th:text="${e.coursesxteacher.finalHourCoursesxTeacher}"></td>
-								<td th:text="${e.coursesxteacher.semesterCoursesxTeacher}"></td>
-								<td
-									th:text="${e.student.nameStudent + ' ' + e.student.lastnameStudent}"></td>
-								<td><a
-									th:href="@{'/enrollments/delete/'+${e.idEnrollment}}"><i
-										class="iconf fa fa-trash" style="color: red"></i></a>&nbsp;&nbsp;<a
-									th:href="@{'/enrollments/irupdate/'+${e.idEnrollment}}"><i
-										class="iconf fa fa-pen" style="color: blue"></i></a></td>
+								<td th:text="${e[0]}"></td>
+								<td th:text="${e[1]}"></td>
+								<td th:text="${e[2]}"></td>
 							</tr>
 						</tbody>
 					</table>

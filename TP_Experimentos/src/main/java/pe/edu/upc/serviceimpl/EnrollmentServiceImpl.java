@@ -20,8 +20,13 @@ public class EnrollmentServiceImpl implements IEnrollmentService, Serializable {
 	private IEnrollmentRepository eR;
 
 	@Override
-	public void insert(Enrollment enrollment) {
-		eR.save(enrollment);
+	public int insert(Enrollment enrollment) {
+		int rpta = 0;
+		rpta = eR.nuEnrollments(enrollment.getCoursesxteacher().getIdCoursesxTeacher());
+		if(rpta <=10) {
+			eR.save(enrollment);
+		}
+		return rpta;
 	}
 
 	@Override
@@ -31,6 +36,7 @@ public class EnrollmentServiceImpl implements IEnrollmentService, Serializable {
 
 	@Override
 	public void delete(int idEnrollment) {
+		
 		eR.deleteById(idEnrollment);
 	}
 

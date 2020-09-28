@@ -47,11 +47,22 @@ public class EnrollmentController {
 			model.addAttribute("listCoursesxTeacher", cxtS.list());
 			return "enrollment/enrollment";
 		} else {
-			eS.insert(enroll);
-			model.addAttribute("listStudents", sS.list());
-			model.addAttribute("listCoursesxTeacher", cxtS.list());
-			model.addAttribute("listEnrollments", eS.list());
-			return "redirect:/enrollments/list";
+			int rpta = 0;
+			rpta = eS.insert(enroll);
+			
+			if (rpta >=10) {
+				model.addAttribute("mensaje", "Ya hay 10 alummnos matriculados");
+				model.addAttribute("listStudents", sS.list());
+				model.addAttribute("listCoursesxTeacher", cxtS.list());
+				return "enrollment/enrollment";
+			} else {
+				eS.insert(enroll);
+				model.addAttribute("listStudents", sS.list());
+				model.addAttribute("listCoursesxTeacher", cxtS.list());
+				model.addAttribute("listEnrollments", eS.list());
+				return "redirect:/enrollments/list";
+			}
+			
 		}
 	}
 
@@ -107,4 +118,5 @@ public class EnrollmentController {
 		model.addAttribute("listEnrollments", listEnrollments);
 		return "enrollment/listEnrollments";
 	}
+	
 }

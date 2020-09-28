@@ -13,4 +13,8 @@ import pe.edu.upc.entity.Enrollment;
 public interface IEnrollmentRepository extends JpaRepository<Enrollment, Integer> {
 	@Query(value = "SELECT e.id_enrollment, e.id_coursesx_teacher, e.id_student FROM Enrollments e INNER JOIN CoursesxTeachers cxt on e.id_coursesx_teacher=cxt.id_coursesx_teacher WHERE cxt.semester_coursesx_teacher =:parametro", nativeQuery = true)
 	List<Enrollment> findBysemesterCoursesxTeacher(@Param("parametro") String semesterCoursesxTeacher);
+
+	@Query(value="select count(e.id_student) from enrollments e where e.id_coursesx_teacher = :numberEnrollments", nativeQuery= true)
+	public int nuEnrollments(@Param("numberEnrollments") int numberEnrollments);
+	
 }

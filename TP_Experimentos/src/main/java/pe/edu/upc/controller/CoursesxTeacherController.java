@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.CoursesxTeacher;
+import pe.edu.upc.entity.Enrollment;
 import pe.edu.upc.serviceinterface.ICourseService;
 import pe.edu.upc.serviceinterface.ICoursesxTeacherService;
 import pe.edu.upc.serviceinterface.ITeacherService;
@@ -93,5 +96,29 @@ public class CoursesxTeacherController {
 			model.addAttribute("coursesxteacher", objPro.get());
 			return "coursesxteacher/coursesxteacher";
 		}
+	}
+	
+	@RequestMapping("/reports")
+	public String reportsvist(Model model) {
+		model.addAttribute("enrollment", new Enrollment());
+		model.addAttribute("listEnrollments", cxtS.report1());
+		return "enrollment/reportEnrollments";
+	}
+	
+	//@RequestMapping("/reports1/{param}")
+	//public String reportsvist(Map<String, Object> model, @PathVariable String param) {
+	//	model.put("listEnrollments", cxtS.report2(param));
+	//	return "enrollment/reportEnrollments";
+	//}
+	
+	@RequestMapping("/reports1")
+	public String reportfiltr(Model model, @Validated Enrollment enrollment) throws Exception {
+		List<String[]> listEnrollments;
+		listEnrollments = cxtS.report2(enrollment.getCoursesxteacher().getSemesterCoursesxTeacher());
+		if (listEnrollments.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
+		}
+		model.addAttribute("listEnrollments", listEnrollments);
+		return "enrollment/reportEnrollments";
 	}
 }
