@@ -36,7 +36,7 @@ public class TeacherController {
 		} else {
 			tS.insert(teacher);
 			model.addAttribute("listTeachers", tS.list());
-			return "teacher/listTeachers";
+			return "redirect:/teachers/list";
 		}
 	}
 
@@ -71,7 +71,7 @@ public class TeacherController {
 		Optional<Teacher> objPro = tS.searchId(id);
 		if (objPro == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
-			return "redirect:/teacher/list";
+			return "redirect:/teachers/list";
 		} else {
 			model.addAttribute("listTeachers", tS.list());
 			model.addAttribute("teacher", objPro.get());

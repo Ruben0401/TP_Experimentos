@@ -41,7 +41,7 @@ public class CourseController {
 			} else {
 				cS.insert(course);
 				model.addAttribute("listCourses", cS.list());
-				return "course/listCourses";
+				return "redirect:/courses/list";
 			}
 		}
 

@@ -39,7 +39,7 @@ public class StudentController {
 			try {
 				sS.insert(student);
 				model.addAttribute("listStudents", sS.list());
-				return "student/listStudents";
+				return "redirect:/students/list";
 			} catch (Exception e) {
 				model.addAttribute("mensaje", "Codigo de alumno ya existe");
 				model.addAttribute("student", new Student());

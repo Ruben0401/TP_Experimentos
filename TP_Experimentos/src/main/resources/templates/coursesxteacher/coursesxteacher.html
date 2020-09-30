@@ -146,7 +146,7 @@
 					<h1 class="h3 mb-4 text-gray-800">Cursos por docente</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${coursesxteacher}" th:remove="tag">
+					<div th:object="${coursesxTeacher}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
@@ -154,7 +154,7 @@
 					</div>
 
 					<form th:action="@{/coursesxteachers/save}"
-						th:object="${coursesxteacher}" method="post">
+						th:object="${coursesxTeacher}" method="post">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">

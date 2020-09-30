@@ -44,10 +44,15 @@ public class CoursesxTeacherServiceImpl implements ICoursesxTeacherService, Seri
 		// TODO Auto-generated method stub
 		return cxtR.findBysemesterxCourses2();
 	}
-	
+
 	public List<String[]> report2(String param) {
 		// TODO Auto-generated method stub
 		return cxtR.findBysemesterxCourses(param);
+	}
+
+	@Override
+	public List<CoursesxTeacher> findNameCoursesxTeacherFull(String parametro) {
+		return cxtR.findBynameCoursexteacher(parametro);
 	}
 
 }

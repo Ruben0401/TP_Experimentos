@@ -32,10 +32,10 @@ public class CoursesxTeacherController {
 
 	@Autowired
 	private ITeacherService tS;
-	
+
 	@GetMapping("/new")
 	public String newCoursesxTeacher(Model model) {
-		model.addAttribute("coursesxteacher", new CoursesxTeacher());
+		model.addAttribute("coursesxTeacher", new CoursesxTeacher());
 		model.addAttribute("listCourses", cS.list());
 		model.addAttribute("listTeachers", tS.list());
 		return "coursesxteacher/coursesxteacher";
@@ -60,7 +60,7 @@ public class CoursesxTeacherController {
 	@GetMapping("/list")
 	public String listCoursesxTeacher(Model model) {
 		try {
-			model.addAttribute("coursesxteacher", new CoursesxTeacher());// necesario para el buscar
+			model.addAttribute("coursesxTeacher", new CoursesxTeacher());// necesario para el buscar
 			model.addAttribute("listCoursesxTeachers", cxtS.list());
 		} catch (Exception e) {
 			model.addAttribute("error", e.getMessage());
@@ -71,6 +71,7 @@ public class CoursesxTeacherController {
 	@RequestMapping("/delete/{id}")
 	public String deleteCoursesxTeacher(Model model, @PathVariable(value = "id") int id) {
 		try {
+			model.addAttribute("coursesxTeacher", new CoursesxTeacher());
 			if (id > 0) {
 				cxtS.delete(id);
 			}
@@ -81,7 +82,7 @@ public class CoursesxTeacherController {
 		model.addAttribute("listCoursesxTeachers", cxtS.list());
 		return "coursesxteacher/listCoursesxTeachers";
 	}
-	
+
 	@RequestMapping("/irupdate/{id}")
 	public String irupdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<CoursesxTeacher> objPro = cxtS.searchId(id);
@@ -92,24 +93,25 @@ public class CoursesxTeacherController {
 			model.addAttribute("listCourses", cS.list());
 			model.addAttribute("listTeachers", tS.list());
 			model.addAttribute("listCoursesxTeachers", cS.list());
-			model.addAttribute("coursesxteacher", objPro.get());
+			model.addAttribute("coursesxTeacher", objPro.get());
 			return "coursesxteacher/coursesxteacher";
 		}
 	}
-	
+
 	@RequestMapping("/reports")
 	public String reportsvist(Model model) {
 		model.addAttribute("enrollment", new Enrollment());
 		model.addAttribute("listEnrollments", cxtS.report1());
 		return "enrollment/reportEnrollments";
 	}
-	
-	//@RequestMapping("/reports1/{param}")
-	//public String reportsvist(Map<String, Object> model, @PathVariable String param) {
-	//	model.put("listEnrollments", cxtS.report2(param));
-	//	return "enrollment/reportEnrollments";
-	//}
-	
+
+	// @RequestMapping("/reports1/{param}")
+	// public String reportsvist(Map<String, Object> model, @PathVariable String
+	// param) {
+	// model.put("listEnrollments", cxtS.report2(param));
+	// return "enrollment/reportEnrollments";
+	// }
+
 	@RequestMapping("/reports1")
 	public String reportfiltr(Model model, @Validated Enrollment enrollment) throws Exception {
 		List<String[]> listEnrollments;
@@ -120,4 +122,16 @@ public class CoursesxTeacherController {
 		model.addAttribute("listEnrollments", listEnrollments);
 		return "enrollment/reportEnrollments";
 	}
+
+	@RequestMapping("/search")
+	public String searchCoursesxTeacher(Model model, @Validated CoursesxTeacher coursesxteachers) throws Exception {
+		List<CoursesxTeacher> listCoursesxTeachers;
+		listCoursesxTeachers = cxtS.findNameCoursesxTeacherFull(coursesxteachers.getTeacher().getNameTeacher());
+		if (listCoursesxTeachers.isEmpty()) {
+			model.addAttribute("mensaje", "No hay registros que coincidan con la búsqueda");
+		}
+		model.addAttribute("listCoursesxTeachers", listCoursesxTeachers);
+		return "coursesxteacher/listCoursesxTeachers";
+	}
+
 }

@@ -14,10 +14,10 @@ public interface ICoursesxTeacherService {
 	public void delete(int idCoursesxTeacher);
 
 	Optional<CoursesxTeacher> searchId(int idCoursesxTeacher);
-	
-	
+
 	public List<String[]> report1();
-	
-	
+
 	public List<String[]> report2(String param);
+
+	List<CoursesxTeacher> findNameCoursesxTeacherFull(String parametro);
 }
