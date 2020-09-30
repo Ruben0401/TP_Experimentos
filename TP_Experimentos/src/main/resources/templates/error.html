@@ -38,7 +38,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/courses/list}">
+				th:href="@{/students/list}">
 				<div class="sidebar-brand-icon rotate-n-15"
 					style="margin-left: 23px;">
 					<i class="fas fa-book"></i>
@@ -150,54 +150,20 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Cursos</h1>
+					<div class="container">
 
-					<a th:href="@{/courses/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+						<div class="card bg-danger text-white">
+							<div class="card-header">Acceso Denegado!</div>
+							<div class="card-body">
+								<h5 class="card-title">Los sentimos , NO tienes permisos
+									para acceder a este recurso.</h5>
+								<a th:href="@{/courses/list}" class="btn btn-outline-light"
+									role="button">Ir al inicio</a>
 
-					<form th:action="@{/courses/search}" method="post"
-						th:object="${course}">
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="nameCourse"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
-										<td><input type="text" class="form-control"
-											autocomplete="off" th:field="*{nameCourse}" id="nameCourse"
-											placeholder="Nombre del curso" required="required"
-											pattern="[a-zA-Z]{3,20}"></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/courses/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
+							</div>
 						</div>
-					</form>
+					</div>
 
-					<hr class="sidebar-divider">
-
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Nombre</th>
-								<th colspan="2" scope="col">Operación</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="c: ${listCourses}">
-								<td th:text="${c.nameCourse}"></td>
-								<td><a th:href="@{'/courses/delete/'+${c.idCourse}}"><i
-										class="iconf fa fa-trash" style="color: red"></i></a>&nbsp;&nbsp;<a
-									th:href="@{'/courses/irupdate/'+${c.idCourse}}"><i
-										class="iconf fa fa-pen" style="color: blue"></i></a></td>
-							</tr>
-						</tbody>
-					</table>
-
-					<p th:text="${mensaje}" class="form-text text-success"></p>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -244,7 +210,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/courses/index}">Cerrar
+					<a class="btn btn-primary" th:href="@{/students/index}">Cerrar
 						sesión</a>
 				</div>
 			</div>
@@ -264,3 +230,4 @@
 </body>
 
 </html>
+
