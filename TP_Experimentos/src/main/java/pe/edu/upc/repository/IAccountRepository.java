@@ -11,6 +11,8 @@ import pe.edu.upc.entity.Account;
 public interface IAccountRepository extends JpaRepository<Account, Integer> {//no es long en vez de Integer????
 	@Query("select count(a.userAccount) from Account a where a.userAccount=:userAccount")
 	public int searchAccount(@Param("userAccount") String userAccount);
+	
+	
 	@Query("from Account a where upper(a.userAccount)=upper(:parametro)")
 	public Account findByUserAccount(@Param("parametro")String account);
 	
