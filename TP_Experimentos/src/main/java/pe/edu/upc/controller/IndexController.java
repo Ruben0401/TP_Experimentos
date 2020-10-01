@@ -1,6 +1,5 @@
 package pe.edu.upc.controller;
 
-
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +73,7 @@ public class IndexController {
 	@GetMapping("/registro")	
 	public String newAccountError (Model model) {
 		model.addAttribute("account", new Account());
-		model.addAttribute("error", "El UserName ya está en uso");
+		model.addAttribute("error", "El usuario ingresado ya existe");
 		return "registro";
 	}
 	
