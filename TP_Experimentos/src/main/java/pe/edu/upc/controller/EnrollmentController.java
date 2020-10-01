@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class EnrollmentController {
 			rpta = eS.insert(enroll);
 			
 			if (rpta >=10) {
-				model.addAttribute("mensaje", "Ya hay 10 alummnos matriculados");
+				model.addAttribute("mensaje", "Ya hay 10 alummnos matriculados en el curso con el docente seleccionado");
 				model.addAttribute("listStudents", sS.list());
 				model.addAttribute("listCoursesxTeacher", cxtS.list());
 				return "enrollment/enrollment";
@@ -117,6 +118,21 @@ public class EnrollmentController {
 		}
 		model.addAttribute("listEnrollments", listEnrollments);
 		return "enrollment/listEnrollments";
+	}
+	
+	@GetMapping("/detail/{param}")
+	public String detailImportation(@PathVariable(value = "param") String param, Map<String, Object> model,
+			RedirectAttributes flash) {
+		List<String[]> listStudents;
+		listStudents = cxtS.report2details(param);
+		if (listStudents == null) {
+			flash.addFlashAttribute("error", "El Detalle no existe en la base de datos");
+			return "enrollment/reportEnrollments"; 
+		}
+		model.put("listStudents", listStudents);
+		model.put("titulo", "Detalle del curso de:" + param);
+
+		return "enrollment/details/listDetail"; 
 	}
 	
 }

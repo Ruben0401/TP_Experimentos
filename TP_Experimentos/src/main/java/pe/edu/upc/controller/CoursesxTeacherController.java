@@ -104,6 +104,7 @@ public class CoursesxTeacherController {
 		model.addAttribute("listEnrollments", cxtS.report1());
 		return "enrollment/reportEnrollments";
 	}
+	
 
 	// @RequestMapping("/reports1/{param}")
 	// public String reportsvist(Map<String, Object> model, @PathVariable String

@@ -20,4 +20,6 @@ public interface ICoursesxTeacherService {
 	public List<String[]> report2(String param);
 
 	List<CoursesxTeacher> findNameCoursesxTeacherFull(String parametro);
+	
+	public List<String[]> report2details(String param);
 }

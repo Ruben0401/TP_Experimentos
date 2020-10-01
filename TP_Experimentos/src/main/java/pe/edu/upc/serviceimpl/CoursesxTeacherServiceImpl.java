@@ -55,4 +55,10 @@ public class CoursesxTeacherServiceImpl implements ICoursesxTeacherService, Seri
 		return cxtR.findBynameCoursexteacher(parametro);
 	}
 
+	@Override
+	public List<String[]> report2details(String param) {
+		// TODO Auto-generated method stub
+		return cxtR.detalleMatricula(param);
+	}
+
 }

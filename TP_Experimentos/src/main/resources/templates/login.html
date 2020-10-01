@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<title>Matrícula UPC</title>
 	<link rel="shortcut icon" href="/matricula/upc.ico" />
 
@@ -60,11 +61,11 @@
 				<br></br>
 				 <div align="center" class="col-8 mb-2" >
 			 			 <div class="alert alert-success" th:if="${success != null}"
-							th:text="${success}"></div>
+							th:text="${success}" style="color:green;"></div>
 			 	     	  <div class="alert alert-danger" th:if="${error != null}"
 							th:text="${error}" style="color:red;"></div>
 			 		     <div class="alert alert-info" th:if="${info != null}"
-							th:text="${info}"></div>
+							th:text="${info}" ></div>
 		       	</div>
 				<p class="account1 editContent" style="outline: none; cursor: inherit;">No estas registrado? <a th:href="@{/registry}">Registrarse</a></p>
 			</div>

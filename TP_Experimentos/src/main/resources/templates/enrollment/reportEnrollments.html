@@ -198,6 +198,8 @@
 								<th scope="col">Curso</th>
 								<th scope="col">Docente</th>
 								<th scope="col">Semestre</th>
+								<th scope="col">Nro. de Alumnos Matriculados</th>
+								<th scope="col">Detalle</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -205,6 +207,10 @@
 								<td th:text="${e[0]}"></td>
 								<td th:text="${e[1]}"></td>
 								<td th:text="${e[2]}"></td>
+								<td th:text="${e[3]}"></td>
+								<td class="text-center">
+								<a
+										th:href="@{'/enrollments/detail/'+ ${e[0]}}"class="btn btn-danger">Detalle</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -254,10 +260,13 @@
 				<div class="modal-body">Seleccione "Cerrar sesión" a
 					continuación si está listo para finalizar su sesión actual.</div>
 				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/courses/index}">Cerrar
-						sesión</a>
+					<form id="logoutForm" th:action="@{/logout}" method="post">
+						<button class="btn btn-danger"
+							onclick="document.getElementById('logoutForm').submit();"
+							type="submit">Cerrar</button>
+						<button class="btn btn-dark" type="button" data-dismiss="modal"
+							th:href="@{/coursesxteacher/reports}">Cancel</button>
+					</form>
 				</div>
 			</div>
 		</div>

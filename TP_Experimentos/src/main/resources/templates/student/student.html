@@ -158,8 +158,8 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idStudent}" class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
+								<input type="number" th:field="*{idStudent}" class="form-control"
+									th:errorclass="'form-control alert-danger'" min="201700000" max ="202020000"required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idStudent')}"
 									th:errors="*{idStudent}"></small>
@@ -269,10 +269,13 @@
 				<div class="modal-body">Seleccione "Cerrar sesión" a
 					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/students/index}">Cerrar
-						Sesión</a>
+					<form id="logoutForm" th:action="@{/logout}" method="post">
+						<button class="btn btn-danger"
+							onclick="document.getElementById('logoutForm').submit();"
+							type="submit">Cerrar</button>
+						<button class="btn btn-dark" type="button" data-dismiss="modal"
+							th:href="@{/students/new}">Cancel</button>
+					</form>
 				</div>
 			</div>
 		</div>
