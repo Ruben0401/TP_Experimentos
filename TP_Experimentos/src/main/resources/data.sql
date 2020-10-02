@@ -15,20 +15,20 @@ INSERT INTO Students(id_student, date_of_admission_student, date_of_birth_studen
 INSERT INTO Students(id_student, date_of_admission_student, date_of_birth_student, lastname_student, name_student) VALUES (201814238, '2017-10-17', '2001-05-04', 'Rodriguez Canahuire', 'Ruben Andres');
 INSERT INTO Students(id_student, date_of_admission_student, date_of_birth_student, lastname_student, name_student) VALUES (201719761, '2016-10-05', '2000-07-26', 'Casquino Flores', 'Luis Gonzalo');
 
-INSERT INTO Courses (name_course) VALUES ('Física');
-INSERT INTO Courses (name_course) VALUES ('Física II');
-INSERT INTO Courses (name_course) VALUES ('Física III');
-INSERT INTO Courses (name_course) VALUES ('Cálculo');
-INSERT INTO Courses (name_course) VALUES ('Cálculo II');
+INSERT INTO Courses (name_course) VALUES ('Fisica');
+INSERT INTO Courses (name_course) VALUES ('Fisica II');
+INSERT INTO Courses (name_course) VALUES ('Fisica III');
+INSERT INTO Courses (name_course) VALUES ('Calculo');
+INSERT INTO Courses (name_course) VALUES ('Calculo II');
 INSERT INTO Courses (name_course) VALUES ('FAE');
 INSERT INTO Courses (name_course) VALUES ('ADAE');
-INSERT INTO Courses (name_course) VALUES ('Estadística Aplicada');
-INSERT INTO Courses (name_course) VALUES ('Estadística Aplicada II');
+INSERT INTO Courses (name_course) VALUES ('Estadistica Aplicada');
+INSERT INTO Courses (name_course) VALUES ('Estadistica Aplicada II');
 INSERT INTO Courses (name_course) VALUES ('Matemática Básica');
 INSERT INTO Courses (name_course) VALUES ('Taller de Creatividad');
 
 INSERT INTO Teachers(id_teacher, date_of_admission_teacher, date_of_birth_teacher, lastname_teacher, name_teacher) VALUES (85462312, '2005-08-10', '1980-09-30', 'Macedo Lozano', 'Anthony Clinton');
-INSERT INTO Teachers(id_teacher, date_of_admission_teacher, date_of_birth_teacher, lastname_teacher, name_teacher) VALUES (62145232, '2002-11-18', '1970-01-09', 'Cerda Garcia', 'Rubén Oscar');
+INSERT INTO Teachers(id_teacher, date_of_admission_teacher, date_of_birth_teacher, lastname_teacher, name_teacher) VALUES (62145232, '2002-11-18', '1970-01-09', 'Cerda Garcia', 'Ruben Oscar');
 INSERT INTO Teachers(id_teacher, date_of_admission_teacher, date_of_birth_teacher, lastname_teacher, name_teacher) VALUES (96587412, '2001-10-17', '1975-05-04', 'Burga Durango', 'Daniel Wilfredo');
 INSERT INTO Teachers(id_teacher, date_of_admission_teacher, date_of_birth_teacher, lastname_teacher, name_teacher) VALUES (42123657, '2005-11-15', '1968-07-26', 'Larios Franco', 'Alfredo Cesar');
 INSERT INTO Teachers(id_teacher, date_of_admission_teacher, date_of_birth_teacher, lastname_teacher, name_teacher) VALUES (12123747, '2005-12-15', '1970-04-26', 'Herrera Trujillo', 'Emilio Arturo');

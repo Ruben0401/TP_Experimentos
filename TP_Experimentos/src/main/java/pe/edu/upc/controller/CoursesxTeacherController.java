@@ -19,6 +19,10 @@ import pe.edu.upc.entity.Enrollment;
 import pe.edu.upc.serviceinterface.ICourseService;
 import pe.edu.upc.serviceinterface.ICoursesxTeacherService;
 import pe.edu.upc.serviceinterface.ITeacherService;
+import java.text.DateFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 @Controller
 @RequestMapping("/coursesxteachers")
@@ -49,11 +53,26 @@ public class CoursesxTeacherController {
 			model.addAttribute("listTeachers", tS.list());
 			return "coursesxteacher/coursesxteacher";
 		} else {
-			cxtS.insert(coursesxteacher);
-			model.addAttribute("listCourses", cS.list());
-			model.addAttribute("listTeachers", tS.list());
-			model.addAttribute("listCoursesxTeachers", cxtS.list());
-			return "redirect:/coursesxteachers/list";
+			
+			DateFormat dateFormat1 = new SimpleDateFormat("hh:mm");
+			DateFormat dateFormat2 = new SimpleDateFormat("hh:mm");
+			Date d1 = dateFormat1.parse(coursesxteacher.getInitalHourCoursesxTeacher());
+			Date d2 = dateFormat2.parse(coursesxteacher.getFinalHourCoursesxTeacher());
+			if (d1.before(d2)) {
+				cxtS.insert(coursesxteacher);
+				model.addAttribute("listCourses", cS.list());
+				model.addAttribute("listTeachers", tS.list());
+				model.addAttribute("listCoursesxTeachers", cxtS.list());
+				return "redirect:/coursesxteachers/list";
+			}
+			else 
+			{
+				model.addAttribute("mensaje", "La hora de inicio debe ser antes de la hora de fin");
+				model.addAttribute("listCourses", cS.list());
+				model.addAttribute("listTeachers", tS.list());
+				return "coursesxteacher/coursesxteacher";
+			}
+			
 		}
 	}
 
@@ -77,7 +96,7 @@ public class CoursesxTeacherController {
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje", "Ocurrió un error,  no es posible eliminar al Curso con docecnte asignado, ya que existen alumnos matriculados");
 		}
 		model.addAttribute("listCoursesxTeachers", cxtS.list());
 		return "coursesxteacher/listCoursesxTeachers";

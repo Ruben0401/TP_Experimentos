@@ -32,20 +32,37 @@ public class StudentController {
 	@PostMapping("/save")
 	public String saveStudent(@Validated Student student, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("mensaje", "Ya existe un alumno con ese código");
+			model.addAttribute("student", new Student());
 			return "student/student";
 		} else {
-			
-			try {
-				sS.insert(student);
-				model.addAttribute("listStudents", sS.list());
-				return "redirect:/students/list";
-			} catch (Exception e) {
-				model.addAttribute("mensaje", "Codigo de alumno ya existe");
-				model.addAttribute("student", new Student());
-				return "student/student";
+			List<Student> list;
+			 
+				list = sS.list();
+			for (Student student2 : list) {
+				if (student.getIdStudent() == student2.getIdStudent()) 
+				{
+					model.addAttribute("mensaje", "Ya existe un alumno con ese código");
+					model.addAttribute("student", new Student());
+					return "student/student";
+				} 
+				else {	
+					
+						if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {
+							
+							sS.insert(student);
+							model.addAttribute("listStudents", sS.list());
+							return "redirect:/students/list";
+						}
+						else {
+							model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
+							model.addAttribute("student", new Student());
+							return "student/student";
+						}
+				}
 			}
+			return "redirect:/students/list";
 		}
+		
 	}
 
 	@GetMapping("/list")
@@ -68,11 +85,10 @@ public class StudentController {
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje", "Ocurrió un error, no es posible eliminar al alumno, ya que está matriculado");
 		}
 		model.addAttribute("listStudents", sS.list());
 		return "student/listStudents";
-
 	}
 
 	@RequestMapping("/irupdate/{id}")
@@ -98,5 +114,24 @@ public class StudentController {
 		model.addAttribute("listStudents", listStudents);
 		return "student/listStudents";
 	}
-
+	
+	@PostMapping("/saves")
+	public String saveStudentmod(@Validated Student student, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			model.addAttribute("student", new Student());
+			return "student/student";
+		} else {
+						if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {
+							sS.insert(student);
+							model.addAttribute("listStudents", sS.list());
+							return "redirect:/students/list";
+						}
+						else {
+							model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
+							model.addAttribute("student", new Student());
+							return "student/modStudent";
+						}
+						
+			}
+		}
 }

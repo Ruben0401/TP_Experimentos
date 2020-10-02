@@ -37,7 +37,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/teachers/list}">
+				th:href="@{/coursesxteachers/list}">
 				<div class="sidebar-brand-icon rotate-n-15" style="margin-left:23px;">
 					<i class="fas fa-book"></i>
 				</div>
@@ -50,7 +50,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Menú</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -143,83 +143,59 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Docente</h1>
+					<h1 class="h3 mb-4 text-gray-800">Matrícula</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${teacher}" th:remove="tag">
+					<div th:object="${enrollment}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/teachers/saves}" th:object="${teacher}"
+					<form th:action="@{/enrollments/saves}" th:object="${enrollment}"
 						method="post">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idTeacher}" class="form-control"
-									readonly th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idTeacher')}"
-									th:errors="*{idTeacher}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre(s):</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nameTeacher}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required/> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameTeacher')}"
-									th:errors="*{nameTeacher}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Apellido(s):</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{lastnameTeacher}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('lastnameTeacher')}"
-									th:errors="*{lastnameTeacher}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Fecha
-								de nacimiento:</label>
-							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"
-									th:field="*{dateOfBirthTeacher}" class="form-control"
+								<input type="text" th:field="*{idEnrollment}"
+									class="form-control" readonly
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('dateOfBirthTeacher')}"
-									th:errors="*{dateOfBirthTeacher}"></small>
+									th:if="${#fields.hasErrors('idEnrollment')}"
+									th:errors="*{idEnrollment}"></small>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Fecha
-								de ingreso:</label>
+							<label for="course" class="col-sm-2 col-form-label">Curso
+								por docente:</label>
 							<div class="col-sm-6">
-								<input type="date" required pattern="yyyy-MM-dd"
-									th:field="*{dateOfAdmissionTeacher}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('dateOfAdmissionTeacher')}"
-									th:errors="*{dateOfAdmissionTeacher}"></small>
+								<select class="form-control"
+									th:field="*{coursesxteacher.idCoursesxTeacher}">
+									<option th:each="cxt: ${listCoursesxTeacher}"
+										th:value="${cxt.idCoursesxTeacher}"
+										th:text="${cxt.course.nameCourse + ' - ' + cxt.teacher.nameTeacher + ' ' + cxt.teacher.lastnameTeacher + ' - ' + cxt.initalHourCoursesxTeacher + ' - ' + cxt.finalHourCoursesxTeacher + ' - ' + cxt.semesterCoursesxTeacher}"
+										th:selected="(${cxt.idCoursesxTeacher} == *{coursesxteacher.idCoursesxTeacher})"></option>
+								</select>
 							</div>
 						</div>
-
-
+						<div class="form-group row">
+							<label for="teacher" class="col-sm-2 col-form-label">Alumno:</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{student.idStudent}">
+									<option th:each="t: ${listStudents}" th:value="${t.idStudent}"
+										th:text="${t.nameStudent + ' ' + t.lastnameStudent}"
+										th:selected="(${t.idStudent} == *{student.idStudent})"></option>
+								</select>
+							</div>
+						</div>
 						<div class="form-group row">
 							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/teachers/list" class="btn btn-danger">Cancelar</a>
+								<input type="submit" value="Matricular"
+									class="btn btn-secondary"></input> <a href="/enrollments/list"
+									class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
-
 					</form>
 					<p th:text="${mensaje}" class="form-text text-danger"></p>
 
@@ -274,7 +250,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{'/teachers/irupdate/'+${idTeacher}}">Cancel</button>
+							th:href="@{/enrollments/new}">Cancel</button>
 					</form>
 				</div>
 			</div>

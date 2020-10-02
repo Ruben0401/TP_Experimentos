@@ -150,7 +150,7 @@
 						</ul>
 					</div>
 
-					<form th:action="@{/students/save}" th:object="${student}"
+					<form th:action="@{/students/saves}" th:object="${student}"
 						method="post">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
@@ -167,7 +167,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameStudent}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'"  required/> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameStudent')}"
 									th:errors="*{nameStudent}"></small>
@@ -178,7 +178,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{lastnameStudent}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastnameStudent')}"
 									th:errors="*{lastnameStudent}"></small>
@@ -271,7 +271,7 @@
 							onclick="document.getElementById('logoutForm').submit();"
 							type="submit">Cerrar</button>
 						<button class="btn btn-dark" type="button" data-dismiss="modal"
-							th:href="@{'/students/irupdate/'+${s.idStudent}}">Cancel</button>
+							th:href="@{'/students/irupdate/'+${idStudent}}">Cancel</button>
 					</form>
 				</div>
 			</div>

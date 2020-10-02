@@ -156,7 +156,7 @@
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">
 								<input type="number" th:field="*{idTeacher}" class="form-control"
-									th:errorclass="'form-control alert-danger'"  min="201700000" max ="202020000" required /> <small
+									th:errorclass="'form-control alert-danger'"  min="10000000" max ="99999999" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idTeacher')}"
 									th:errors="*{idTeacher}"></small>
@@ -167,7 +167,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameTeacher}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameTeacher')}"
 									th:errors="*{nameTeacher}"></small>
@@ -178,7 +178,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{lastnameTeacher}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
+									th:errorclass="'form-control alert-danger'" required /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastnameTeacher')}"
 									th:errors="*{lastnameTeacher}"></small>

@@ -49,20 +49,29 @@ public class EnrollmentController {
 			return "enrollment/enrollment";
 		} else {
 			int rpta = 0;
+			int rpta2 = 0;
+			rpta2 = eS.searchEnroll(enroll);
 			rpta = eS.insert(enroll);
-			
-			if (rpta >=10) {
-				model.addAttribute("mensaje", "Ya hay 10 alummnos matriculados en el curso con el docente seleccionado");
+			if (rpta2>=1) {
+				model.addAttribute("mensaje", "El alumno ya está matriculado");
 				model.addAttribute("listStudents", sS.list());
 				model.addAttribute("listCoursesxTeacher", cxtS.list());
 				return "enrollment/enrollment";
 			} else {
-				eS.insert(enroll);
-				model.addAttribute("listStudents", sS.list());
-				model.addAttribute("listCoursesxTeacher", cxtS.list());
-				model.addAttribute("listEnrollments", eS.list());
-				return "redirect:/enrollments/list";
+				if (rpta >=10) {
+					model.addAttribute("mensaje", "Ya hay 10 alummnos matriculados en el curso con el docente seleccionado");
+					model.addAttribute("listStudents", sS.list());
+					model.addAttribute("listCoursesxTeacher", cxtS.list());
+					return "enrollment/enrollment";
+				} else {
+					eS.insert(enroll);
+					model.addAttribute("listStudents", sS.list());
+					model.addAttribute("listCoursesxTeacher", cxtS.list());
+					model.addAttribute("listEnrollments", eS.list());
+					return "redirect:/enrollments/list";
+				}
 			}
+			
 			
 		}
 	}
@@ -104,7 +113,7 @@ public class EnrollmentController {
 			model.addAttribute("listCoursesxTeacher", cxtS.list());
 			model.addAttribute("listEnrollments", eS.list());
 			model.addAttribute("enrollment", objPro.get());
-			return "enrollment/enrollment";
+			return "enrollment/modenrollment";
 		}
 	}
 
@@ -135,4 +144,18 @@ public class EnrollmentController {
 		return "enrollment/details/listDetail"; 
 	}
 	
+	@PostMapping("/saves")
+	public String saveEnrollmentM(@Validated Enrollment enroll, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			model.addAttribute("listStudents", sS.list());
+			model.addAttribute("listCoursesxTeacher", cxtS.list());
+			return "enrollment/enrollment";
+		} else {
+					eS.insert1(enroll);
+					model.addAttribute("listStudents", sS.list());
+					model.addAttribute("listCoursesxTeacher", cxtS.list());
+					model.addAttribute("listEnrollments", eS.list());
+					return "redirect:/enrollments/list";
+		}
+	}
 }

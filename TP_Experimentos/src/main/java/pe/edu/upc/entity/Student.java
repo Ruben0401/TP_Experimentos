@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,14 +22,18 @@ public class Student implements Serializable {
 	//@Min(value = 201700000, message = "El código debe ser mayor o igual que 2017")
 	//@Max(value = 201799999, message = "El código debe ser menor o igual que 2017")
 	private int idStudent;
-	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre solo puede tener letras")
+	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El nombre debe tener como minimo 1 y maximo 3 palabras (solo letras)")
 	@Column(name = "nameStudent", nullable = false, length = 45)
 	private String nameStudent;
-	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El apellido solo puede tener letras")
+	@Pattern(regexp = "[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s[a-zA-ZÀ-ÿ\\u00f1\\u00d1])*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$", message = "El apellido debe tener como minimo 1 y maximo 3 palabras (solo letras)")
 	@Column(name = "lastnameStudent", nullable = false, length = 45)
 	private String lastnameStudent;
+	
+	@Past(message = "La fecha debe ser pasada")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirthStudent;
+	
+	@Past(message = "La fecha debe ser pasada")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfAdmissionStudent;
 

@@ -17,4 +17,8 @@ public interface IEnrollmentRepository extends JpaRepository<Enrollment, Integer
 	@Query(value="select count(e.id_student) from enrollments e where e.id_coursesx_teacher = :numberEnrollments", nativeQuery= true)
 	public int nuEnrollments(@Param("numberEnrollments") int numberEnrollments);
 	
+	
+	@Query(value="select count(e.id_student) from enrollments e where e.id_coursesx_teacher = :numberCxt and e.id_student =:numberStudent", nativeQuery= true)
+	public int nuEnrollments1(@Param("numberCxt") int idn,@Param("numberStudent") int ids);
+	
 }

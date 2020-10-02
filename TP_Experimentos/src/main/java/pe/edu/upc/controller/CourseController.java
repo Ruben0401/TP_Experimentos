@@ -67,7 +67,7 @@ public class CourseController {
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje", "Ocurrió un error, no es posible eliminar al curso, ya que esta designado a un docente");
 		}
 		model.addAttribute("listCourses", cS.list());
 		return "course/listCourses";

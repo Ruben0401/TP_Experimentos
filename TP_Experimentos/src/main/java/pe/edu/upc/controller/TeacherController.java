@@ -34,10 +34,31 @@ public class TeacherController {
 		if (result.hasErrors()) {
 			return "teacher/teacher";
 		} else {
-			tS.insert(teacher);
-			model.addAttribute("listTeachers", tS.list());
-			return "redirect:/teachers/list";
+		 List<Teacher> list ;
+		 
+		 list = tS.list();
+		 for (Teacher teacher2 : list) {
+			 if(teacher.getIdTeacher() == teacher2.getIdTeacher()) 
+			 {
+				model.addAttribute("mensaje", "El codigo del Docente ya existe");
+				model.addAttribute("teacher", new Teacher());
+				return "teacher/teacher";
+			 } else {
+				 if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
+						tS.insert(teacher);
+						model.addAttribute("listTeachers", tS.list());
+						return "redirect:/teachers/list";
+					} else {
+						model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de ingreso");
+						model.addAttribute("teacher", new Teacher());
+						return "teacher/teacher";
+					}
+			 }
+		 		}
+			
+			
 		}
+		return "redirect:/teachers/list";
 	}
 
 	@GetMapping("/list")
@@ -60,7 +81,7 @@ public class TeacherController {
 			}
 			model.addAttribute("mensaje", "Se eliminó correctamente");
 		} catch (Exception e) {
-			model.addAttribute("mensaje", "Ocurrió un error, no se pudo eliminar");
+			model.addAttribute("mensaje", "Ocurrió un error, no es posible eliminar al docente, ya que tiene un curso asignado");
 		}
 		model.addAttribute("listTeachers", tS.list());
 		return "teacher/listTeachers";
@@ -89,4 +110,24 @@ public class TeacherController {
 		model.addAttribute("listTeachers", listTeachers);
 		return "teacher/listTeachers";
 	}
+	
+	@PostMapping("/saves")
+	public String saveTeachermod(@Validated Teacher teacher, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			return "teacher/modTeacher";
+		} else {
+		
+			 if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
+					tS.insert(teacher);
+					model.addAttribute("listTeachers", tS.list());
+					return "redirect:/teachers/list";
+				} else {
+					model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de ingreso");
+					model.addAttribute("teacher", new Teacher());
+					return "teacher/modTeacher";
+				}
+			
+		}
+	}
+	
 }
