@@ -109,7 +109,7 @@ public class StudentController {
 	public String saveStudentmod(@Validated Student student, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
 			model.addAttribute("student", new Student());
-			return "student/student";
+			return "student/modStudent";
 		} else {
 						if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {
 							sS.insert(student);
