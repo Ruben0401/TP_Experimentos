@@ -31,10 +31,6 @@ public class StudentController {
 
 	@PostMapping("/save")
 	public String saveStudent(@Validated Student student, BindingResult result, Model model) throws Exception {
-		if (result.hasErrors()) {
-			model.addAttribute("student", new Student());
-			return "student/student";
-		} else {
 			List<Student> list;
 			 
 				list = sS.list();
@@ -42,27 +38,21 @@ public class StudentController {
 				if (student.getIdStudent() == student2.getIdStudent()) 
 				{
 					model.addAttribute("mensaje", "Ya existe un alumno con ese código");
-					model.addAttribute("student", new Student());
+					
 					return "student/student";
 				} 
-				else {	
+			}	
 					
-						if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {
-							
-							sS.insert(student);
-							model.addAttribute("listStudents", sS.list());
-							return "redirect:/students/list";
-						}
-						else {
-							model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
-							model.addAttribute("student", new Student());
-							return "student/student";
-						}
+			if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {	
+						sS.insert(student);
+						model.addAttribute("listStudents", sS.list());
+						return "redirect:/students/list";
 				}
-			}
-			return "redirect:/students/list";
-		}
-		
+				else {
+						model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
+						return "student/student";
+				}
+				
 	}
 
 	@GetMapping("/list")
@@ -128,7 +118,6 @@ public class StudentController {
 						}
 						else {
 							model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
-							model.addAttribute("student", new Student());
 							return "student/modStudent";
 						}
 						

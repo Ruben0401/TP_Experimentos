@@ -31,34 +31,27 @@ public class TeacherController {
 
 	@PostMapping("/save")
 	public String saveTeacher(@Validated Teacher teacher, BindingResult result, Model model) throws Exception {
-		if (result.hasErrors()) {
-			return "teacher/teacher";
-		} else {
-		 List<Teacher> list ;
+		List<Teacher> list;
 		 
-		 list = tS.list();
-		 for (Teacher teacher2 : list) {
-			 if(teacher.getIdTeacher() == teacher2.getIdTeacher()) 
-			 {
-				model.addAttribute("mensaje", "El codigo del Docente ya existe");
-				model.addAttribute("teacher", new Teacher());
-				return "teacher/teacher";
-			 } else {
-				 if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
-						tS.insert(teacher);
-						model.addAttribute("listTeachers", tS.list());
-						return "redirect:/teachers/list";
-					} else {
-						model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de ingreso");
-						model.addAttribute("teacher", new Teacher());
-						return "teacher/teacher";
-					}
-			 }
-		 		}
+		list = tS.list();
+	for (Teacher teacher2 : list) {
+		if (teacher.getIdTeacher() == teacher2.getIdTeacher()) 
+		{
+			model.addAttribute("mensaje", "Ya existe un docente con ese código");
+			return "teacher/teacher";
+		} 
+	}	
 			
-			
+		if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
+					
+				tS.insert(teacher);
+				model.addAttribute("listTeachers", tS.list());
+				return "redirect:/teachers/list";
 		}
-		return "redirect:/teachers/list";
+		else {
+				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
+				return "teacher/teacher";
+		}
 	}
 
 	@GetMapping("/list")
@@ -123,7 +116,6 @@ public class TeacherController {
 					return "redirect:/teachers/list";
 				} else {
 					model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de ingreso");
-					model.addAttribute("teacher", new Teacher());
 					return "teacher/modTeacher";
 				}
 			
