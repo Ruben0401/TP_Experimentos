@@ -139,7 +139,7 @@ public class EnrollmentController {
 			return "enrollment/reportEnrollments"; 
 		}
 		model.put("listStudents", listStudents);
-		model.put("titulo", "Detalle del curso de:" + param);
+		model.put("titulo", "Detalle del curso de: " + param);
 
 		return "enrollment/details/listDetail"; 
 	}

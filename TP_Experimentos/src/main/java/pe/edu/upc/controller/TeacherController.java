@@ -41,11 +41,9 @@ public class TeacherController {
 			model.addAttribute("mensaje", "Ya existe un docente con ese código");
 			return "teacher/teacher";
 		} 
-	}	
-			
+	}			
 		if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
-				Date requestday = new Date();
-				long edadEnDias = (requestday.getTime() - teacher.getDateOfBirthTeacher().getTime())
+				long edadEnDias = (teacher.getDateOfAdmissionTeacher().getTime() - teacher.getDateOfBirthTeacher().getTime())
                         / 1000 / 60 / 60 / 24;
 				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
 				if (años >= 23) {

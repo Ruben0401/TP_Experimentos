@@ -170,12 +170,12 @@
 						</thead>
 						<tbody>
 							<tr th:each="e: ${listStudents}">
-							
+				
 								<td th:text="${e[0]}"></td>
 								<td th:text="${e[4]}"></td>
 								<td th:text="${e[3]}"></td>
-								<td th:text="${e[2]}"></td>
-								<td th:text="${e[1]}"></td>
+								<td th:text="${T(java.lang.String).format(e[2],'dd/MM/yyyy')}"></td>
+								<td th:text="${T(java.lang.String).format(e[1],'dd/MM/yyyy')}"></td>
 							</tr>
 						</tbody>
 					</table>

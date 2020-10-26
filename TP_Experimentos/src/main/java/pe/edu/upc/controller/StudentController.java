@@ -45,10 +45,11 @@ public class StudentController {
 			}	
 					
 			if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {	
-				Date requestday = new Date();
-				long edadEnDias = (requestday.getTime() - student.getDateOfBirthStudent().getTime())
+				
+				long edadEnDias = (student.getDateOfAdmissionStudent().getTime() - student.getDateOfBirthStudent().getTime())
                         / 1000 / 60 / 60 / 24;
 				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
+				
 				if (años >= 16) {
 					sS.insert(student);
 					model.addAttribute("listTeachers", sS.list());

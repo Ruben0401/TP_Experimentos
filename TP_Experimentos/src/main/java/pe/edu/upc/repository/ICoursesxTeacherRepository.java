@@ -23,7 +23,7 @@ public interface ICoursesxTeacherRepository extends JpaRepository<CoursesxTeache
 	List<CoursesxTeacher> findBynameCoursexteacher(@Param("parametro") String parametro);
 	
 	
-	@Query(value = "SELECT e.id_student, e.date_of_admission_student, e.date_of_birth_student, e.lastname_student, e.name_student\r\n" + 
+	@Query(value = "SELECT e.id_student, to_char(e.date_of_admission_student,'DD/MM/YYYY') as Date1, to_char( e.date_of_birth_student, 'DD/MM/YYYY') as Date2, e.lastname_student, e.name_student\r\n" + 
 			"	FROM students e join enrollments en on e.id_student = en.id_student join coursesxteachers cxt\r\n" + 
 			"	on en.id_coursesx_teacher = cxt.id_coursesx_teacher join courses c on cxt.id_course = c.id_course\r\n" + 
 			"	join teachers t on cxt.id_teacher = t.id_teacher where c.name_course =:parametro ", nativeQuery = true)
