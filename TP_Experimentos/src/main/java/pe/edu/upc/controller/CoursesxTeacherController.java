@@ -59,6 +59,7 @@ public class CoursesxTeacherController {
 			Date d1 = dateFormat1.parse(coursesxteacher.getInitalHourCoursesxTeacher());
 			Date d2 = dateFormat2.parse(coursesxteacher.getFinalHourCoursesxTeacher());
 			if (d1.before(d2)) {
+				
 				cxtS.insert(coursesxteacher);
 				model.addAttribute("listCourses", cS.list());
 				model.addAttribute("listTeachers", tS.list());

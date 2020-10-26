@@ -1,5 +1,6 @@
 package pe.edu.upc.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,9 +45,19 @@ public class StudentController {
 			}	
 					
 			if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {	
-						sS.insert(student);
-						model.addAttribute("listStudents", sS.list());
-						return "redirect:/students/list";
+				Date requestday = new Date();
+				long edadEnDias = (requestday.getTime() - student.getDateOfBirthStudent().getTime())
+                        / 1000 / 60 / 60 / 24;
+				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
+				if (años >= 16) {
+					sS.insert(student);
+					model.addAttribute("listTeachers", sS.list());
+					return "redirect:/students/list";
+				}
+				else {
+					model.addAttribute("mensaje", "La edad mínima es de 16 años");
+					return "student/student";
+				}
 				}
 				else {
 						model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
