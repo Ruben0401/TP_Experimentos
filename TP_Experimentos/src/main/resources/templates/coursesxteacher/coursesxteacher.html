@@ -152,7 +152,7 @@
 
 					<form th:action="@{/coursesxteachers/save}"
 						th:object="${coursesxTeacher}" method="post">
-						<div class="form-group row">
+						<div class="form-group row"  style="display:none;" >
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{idCoursesxTeacher}"

@@ -32,16 +32,20 @@ public class TeacherController {
 
 	@PostMapping("/save")
 	public String saveTeacher(@Validated Teacher teacher, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			return "teacher/teacher";
+		}
+		else {
 		List<Teacher> list;
 		 
 		list = tS.list();
-	for (Teacher teacher2 : list) {
+		for (Teacher teacher2 : list) {
 		if (teacher.getIdTeacher() == teacher2.getIdTeacher()) 
 		{
 			model.addAttribute("mensaje", "Ya existe un docente con ese código");
 			return "teacher/teacher";
 		} 
-	}			
+		}			
 		if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
 				long edadEnDias = (teacher.getDateOfAdmissionTeacher().getTime() - teacher.getDateOfBirthTeacher().getTime())
                         / 1000 / 60 / 60 / 24;
@@ -59,6 +63,7 @@ public class TeacherController {
 		else {
 				model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 				return "teacher/teacher";
+		}
 		}
 	}
 
@@ -116,17 +121,25 @@ public class TeacherController {
 	public String saveTeachermod(@Validated Teacher teacher, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
 			return "teacher/modTeacher";
-		} else {
-		
-			 if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
-					tS.insert(teacher);
-					model.addAttribute("listTeachers", tS.list());
-					return "redirect:/teachers/list";
-				} else {
-					model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de ingreso");
+		} else {		
+			if (teacher.getDateOfBirthTeacher().before(teacher.getDateOfAdmissionTeacher())) {
+					long edadEnDias = (teacher.getDateOfAdmissionTeacher().getTime() - teacher.getDateOfBirthTeacher().getTime())
+	                        / 1000 / 60 / 60 / 24;
+					int años = Double.valueOf(edadEnDias / 365.25d).intValue();
+					if (años >= 23) {
+						tS.insert(teacher);
+						model.addAttribute("listTeachers", tS.list());
+						return "redirect:/teachers/list";
+					}
+					else {
+						model.addAttribute("mensaje", "La edad mínima es de 23 años");
+						return "teacher/modTeacher";
+					}
+			}
+			else {
+					model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 					return "teacher/modTeacher";
-				}
-			
+			}
 		}
 	}
 	

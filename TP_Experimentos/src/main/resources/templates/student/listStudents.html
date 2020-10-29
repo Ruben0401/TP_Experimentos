@@ -164,7 +164,7 @@
 										<td><input type="text" class="form-control"
 											autocomplete="off" th:field="*{nameStudent}" id="nameStudent"
 											placeholder="Nombre(s) o Apellido(s)" required="required"
-											pattern="[a-zA-Z]{3,20}"></input></td>
+											pattern="[a-zA-Z\s]{3,45}" maxlength="45"></input></td>
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
@@ -206,6 +206,7 @@
 					</table>
 
 					<p th:text="${mensaje}" class="form-text text-success"></p>
+					<p th:text="${mensaje2}" class="form-text text-danger"></p>
 
 				</div>
 				<!-- /.container-fluid -->

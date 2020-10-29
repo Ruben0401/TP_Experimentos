@@ -20,6 +20,7 @@ import pe.edu.upc.serviceinterface.ICourseService;
 import pe.edu.upc.serviceinterface.ICoursesxTeacherService;
 import pe.edu.upc.serviceinterface.ITeacherService;
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -58,13 +59,23 @@ public class CoursesxTeacherController {
 			DateFormat dateFormat2 = new SimpleDateFormat("hh:mm");
 			Date d1 = dateFormat1.parse(coursesxteacher.getInitalHourCoursesxTeacher());
 			Date d2 = dateFormat2.parse(coursesxteacher.getFinalHourCoursesxTeacher());
+			
 			if (d1.before(d2)) {
+				int hor = cxtS.validarHoras(d1, d2);
+				if (hor ==1 ) {
+					cxtS.insert(coursesxteacher);
+					model.addAttribute("listCourses", cS.list());
+					model.addAttribute("listTeachers", tS.list());
+					model.addAttribute("listCoursesxTeachers", cxtS.list());
+					return "redirect:/coursesxteachers/list";
+				}
+				else {
+					model.addAttribute("mensaje", "La diferencia de horas entre el inicio y fin debe de ser minimo de 2 y maximo 4  horass");
+					model.addAttribute("listCourses", cS.list());
+					model.addAttribute("listTeachers", tS.list());
+					return "coursesxteacher/coursesxteacher";
+				}
 				
-				cxtS.insert(coursesxteacher);
-				model.addAttribute("listCourses", cS.list());
-				model.addAttribute("listTeachers", tS.list());
-				model.addAttribute("listCoursesxTeachers", cxtS.list());
-				return "redirect:/coursesxteachers/list";
 			}
 			else 
 			{

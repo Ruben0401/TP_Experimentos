@@ -167,7 +167,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{nameStudent}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'"  required/> <small
+									th:errorclass="'form-control alert-danger'"  required  maxlength="45" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameStudent')}"
 									th:errors="*{nameStudent}"></small>
@@ -178,7 +178,7 @@
 							<div class="col-sm-6">
 								<input type="text" th:field="*{lastnameStudent}"
 									class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
+									th:errorclass="'form-control alert-danger'" required  maxlength="45" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('lastnameStudent')}"
 									th:errors="*{lastnameStudent}"></small>

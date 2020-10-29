@@ -1,6 +1,10 @@
 package pe.edu.upc.serviceimpl;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +63,17 @@ public class CoursesxTeacherServiceImpl implements ICoursesxTeacherService, Seri
 	public List<String[]> report2details(String param) {
 		// TODO Auto-generated method stub
 		return cxtR.detalleMatricula(param);
+	}
+
+	@Override
+	public int validarHoras(Date inicio,Date fin) {
+		int rpta=0;
+		
+		
+		if (fin.getTime() - inicio.getTime() >= 7200000 && fin.getTime() - inicio.getTime() <= 14400000 ) {
+			rpta=1;
+		}
+		return rpta;
 	}
 
 }

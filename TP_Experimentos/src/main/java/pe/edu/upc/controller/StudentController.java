@@ -32,8 +32,11 @@ public class StudentController {
 
 	@PostMapping("/save")
 	public String saveStudent(@Validated Student student, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			return "student/student";
+		}
+		else {
 			List<Student> list;
-			 
 				list = sS.list();
 			for (Student student2 : list) {
 				if (student.getIdStudent() == student2.getIdStudent()) 
@@ -64,7 +67,8 @@ public class StudentController {
 						model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
 						return "student/student";
 				}
-				
+			
+		}
 	}
 
 	@GetMapping("/list")
@@ -107,7 +111,14 @@ public class StudentController {
 	}
 
 	@RequestMapping("/search")
-	public String searchStudents(Model model, @Validated Student student) throws Exception {
+	public String searchStudents(Model model, @Validated Student student,BindingResult result) throws Exception {
+		if (result.hasErrors()) {
+			
+			model.addAttribute("listStudents", sS.list());
+			model.addAttribute("mensaje2", "No se coloca el caracter a buscar mas un espacio");
+			return "student/listStudents";
+		}
+		else {
 		List<Student> listStudents;
 		listStudents = sS.findNameStudentFull(student.getNameStudent());
 		if (listStudents.isEmpty()) {
@@ -115,23 +126,35 @@ public class StudentController {
 		}
 		model.addAttribute("listStudents", listStudents);
 		return "student/listStudents";
+		}
 	}
+	
 	
 	@PostMapping("/saves")
 	public String saveStudentmod(@Validated Student student, BindingResult result, Model model) throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("student", new Student());
 			return "student/modStudent";
 		} else {
-						if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {
-							sS.insert(student);
-							model.addAttribute("listStudents", sS.list());
-							return "redirect:/students/list";
-						}
-						else {
-							model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
-							return "student/modStudent";
-						}
+				if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {	
+				
+				long edadEnDias = (student.getDateOfAdmissionStudent().getTime() - student.getDateOfBirthStudent().getTime())
+                        / 1000 / 60 / 60 / 24;
+				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
+				
+				if (años >= 16) {
+					sS.insert(student);
+					model.addAttribute("listTeachers", sS.list());
+					return "redirect:/students/list";
+				}
+				else {
+					model.addAttribute("mensaje", "La edad mínima es de 16 años");
+					return "student/student";
+				}
+				}
+				else {
+						model.addAttribute("mensaje", "La fecha de nacimiento debe ser antes de la fecha de admisión");
+						return "student/student";
+				}
 						
 			}
 		}
