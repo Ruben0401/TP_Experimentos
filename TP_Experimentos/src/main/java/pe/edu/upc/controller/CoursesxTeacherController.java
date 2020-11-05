@@ -70,7 +70,7 @@ public class CoursesxTeacherController {
 					return "redirect:/coursesxteachers/list";
 				}
 				else {
-					model.addAttribute("mensaje", "La diferencia de horas entre el inicio y fin debe de ser minimo de 2 y maximo 4  horass");
+					model.addAttribute("mensaje", "La diferencia de horas entre el inicio y fin debe de ser minimo de 2 y maximo 4 horas");
 					model.addAttribute("listCourses", cS.list());
 					model.addAttribute("listTeachers", tS.list());
 					return "coursesxteacher/coursesxteacher";
