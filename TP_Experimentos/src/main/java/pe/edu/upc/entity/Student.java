@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,7 +32,7 @@ public class Student implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirthStudent;
 	
-	@Past(message = "La fecha debe ser pasada")
+	@PastOrPresent(message = "La fecha debe ser pasada")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfAdmissionStudent;
 
