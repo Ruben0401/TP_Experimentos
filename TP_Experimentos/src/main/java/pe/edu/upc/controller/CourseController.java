@@ -34,15 +34,43 @@ public class CourseController {
 		if (result.hasErrors()) {
 			return "course/course";
 		} else {
-			int rpta = cS.insert(course);
-			if (rpta > 0) {
-				model.addAttribute("mensaje", "Ya existe un curso con ese nombre");
-				return "course/course";
-			} else {
+			List<Course> list;
+			list = cS.list();
+				for (Course course2 : list) {
+					if (course.getNameCourse().contentEquals(course2.getNameCourse())) 
+					{
+						model.addAttribute("mensaje", "Ya existe un Curso con ese Nombre");
+						return "course/course";
+					}	
+				}	
+			
+					cS.insert(course);
+					model.addAttribute("listCourses", cS.list());
+					return "redirect:/courses/list";		
+		}
+
+	}
+	
+	@PostMapping("/saves")
+	public String saveCoursesMod(@Validated Course course, BindingResult result, Model model) throws Exception {
+		if (result.hasErrors()) {
+			return "course/course";
+		} else {
+				Optional<Course> objPro = cS.searchId(course.getIdCourse());
+				List<Course> list;
+				list = cS.list();
+					for (Course course2 : list) {
+						if (course.getIdCourse() != course2.getIdCourse() ) {
+							if (course.getNameCourse().contentEquals(course2.getNameCourse())) 
+							{
+								model.addAttribute("mensaje", "Ya existe un Curso con ese Nombre");
+								return "course/course";
+							}
+						}		
+				}
 				cS.insert(course);
 				model.addAttribute("listCourses", cS.list());
 				return "redirect:/courses/list";
-			}
 		}
 
 	}
@@ -82,7 +110,7 @@ public class CourseController {
 		} else {
 			model.addAttribute("listCourses", cS.list());
 			model.addAttribute("course", objPro.get());
-			return "course/course";
+			return "course/coursemod";
 		}
 	}
 

@@ -150,9 +150,9 @@
 						</ul>
 					</div>
 
-					<form th:action="@{/courses/save}" th:object="${course}"
+					<form th:action="@{/courses/saves}" th:object="${course}"
 						method="post">
-						<div class="form-group row" style="display:none;">
+						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Código:</label>
 							<div class="col-sm-6">
 								<input type="text" th:field="*{idCourse}" class="form-control"
@@ -180,10 +180,6 @@
 						</div>
 					</form>
 					<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-
-
-
 				</div>
 				<!-- /.container-fluid -->
 

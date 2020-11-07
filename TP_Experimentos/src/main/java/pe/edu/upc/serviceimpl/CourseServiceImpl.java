@@ -21,7 +21,7 @@ public class CourseServiceImpl implements Serializable, ICourseService {
 
 	@Override
 	public int insert(Course course) {
-		int rpta = cR.searchCourse(course.getNameCourse());
+		int rpta = 0;
 		if (rpta == 0) {
 			cR.save(course);
 		}
