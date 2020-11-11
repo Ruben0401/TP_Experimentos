@@ -184,25 +184,49 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Hora de
-								inicio:</label>
+							<label for="name" class="col-sm-2 col-form-label">Hora de inicio:</label>
 							<div class="col-sm-6">
-								<input type="time" min="07:00" max="22:00" th:field="*{initalHourCoursesxTeacher}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required /> <small
-									class="form-text text-danger"
+								<select  class="form-control" id="items" th:field="*{initalHourCoursesxTeacher}">
+									<option value="7:00 AM">7:00 AM</option>
+									<option value="8:00 AM">8:00 AM</option>
+									<option value="9:00 AM">9:00 AM</option>
+									<option value="10:00 AM">10:00 AM</option>
+									<option value="11:00 AM">11:00 AM</option>
+									<option value="12:00 PM">12:00 PM</option>
+									<option value="1:00 PM">1:00 PM</option>
+									<option value="2:00 PM">2:00 PM</option>
+									<option value="3:00 PM">3:00 PM</option>
+									<option value="4:00 PM">4:00 PM</option>
+									<option value="5:00 PM">5:00 PM</option>
+									<option value="6:00 PM">6:00 PM</option>
+									<option value="7:00 PM">7:00 PM</option>
+									<option value="8:00 PM">8:00 PM</option>
+									<option value="9:00 PM">9:00 PM</option>
+								</select> <small class="form-text text-danger"
 									th:if="${#fields.hasErrors('initalHourCoursesxTeacher')}"
-									th:errors="*{initalHourCoursesxTeacher}" ></small>
+									th:errors="*{initalHourCoursesxTeacher}"></small>
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Hora de
-								fin:</label>
+							<label for="name" class="col-sm-2 col-form-label">Hora de fin:</label>
 							<div class="col-sm-6">
-								<input type="time" min="08:00"  max="23:00" th:field="*{finalHourCoursesxTeacher}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" required/> <small
-									class="form-text text-danger"
+								<select  class="form-control" id="items" th:field="*{finalHourCoursesxTeacher}">
+									<option value="9:00 AM">9:00 AM</option>
+									<option value="10:00 AM">10:00 AM</option>
+									<option value="11:00 AM">11:00 AM</option>
+									<option value="12:00 PM">12:00 PM</option>
+									<option value="1:00 PM">1:00 PM</option>
+									<option value="2:00 PM">2:00 PM</option>
+									<option value="3:00 PM">3:00 PM</option>
+									<option value="4:00 PM">4:00 PM</option>
+									<option value="5:00 PM">5:00 PM</option>
+									<option value="6:00 PM">6:00 PM</option>
+									<option value="7:00 PM">7:00 PM</option>
+									<option value="8:00 PM">8:00 PM</option>
+									<option value="9:00 PM">9:00 PM</option>
+									<option value="10:00 PM">10:00 PM</option>
+									<option value="11:00 PM">11:00 PM</option>
+								</select> <small class="form-text text-danger"
 									th:if="${#fields.hasErrors('finalHourCoursesxTeacher')}"
 									th:errors="*{finalHourCoursesxTeacher}"></small>
 							</div>

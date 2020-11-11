@@ -68,7 +68,7 @@ public class AccountController {
 			int rpta = cS.insert(account);
 			if (rpta > 0) {
 				model.addAttribute("roles", rS.list());
-				model.addAttribute("mensaje2", "El DNI y/o el correo ya está(n) en uso");
+				model.addAttribute("mensaje2", "El el correo ya está(n) en uso");
 				return "user/user";
 			} else {
 

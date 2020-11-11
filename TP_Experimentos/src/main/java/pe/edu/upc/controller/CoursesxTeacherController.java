@@ -22,6 +22,9 @@ import pe.edu.upc.serviceinterface.ITeacherService;
 import java.text.DateFormat;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 
 
 @Controller
@@ -54,11 +57,13 @@ public class CoursesxTeacherController {
 			return "coursesxteacher/coursesxteacher";
 		} else {
 			
-			DateFormat dateFormat1 = new SimpleDateFormat("hh:mm");
-			DateFormat dateFormat2 = new SimpleDateFormat("hh:mm");
+			
+			DateFormat dateFormat1 = new SimpleDateFormat("hh:mm a");
+			DateFormat dateFormat2 = new SimpleDateFormat("hh:mm a");
 			Date d1 = dateFormat1.parse(coursesxteacher.getInitalHourCoursesxTeacher());
 			Date d2 = dateFormat2.parse(coursesxteacher.getFinalHourCoursesxTeacher());
-			
+			System.out.println(d1);
+			System.out.println(d2);
 			if (d1.before(d2)) {
 				int hor = cxtS.validarHoras(d1, d2);
 				if (hor ==1 ) {

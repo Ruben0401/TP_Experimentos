@@ -30,27 +30,14 @@ public class JpaUserDetailsService implements UserDetailsService {
 		Account user = accountRepository.findByUserAccount(username);
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		// GrantedAuthority authority = new SimpleGrantedAuthority(user.getRoleAccount().getNameRole());
-		/*for (Role role : user.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getRol()));
-		}*/
+
 		authorities.add(new SimpleGrantedAuthority(user.getRoleAccount().getNameRole()));
 
 		
 		
 		
 		return new User(user.getUserAccount(),user.getPasswordAccount(), true, true, true, true, authorities);
-		/*return new User(user.getCorreoAccount(),
-				user.getPasswordAccount(), Arrays.asList(authority));
-	    */
 
-		
-		/*Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		grantedAuthorities.add(new SimpleGrantedAuthority(user.getRoleAccount().getNameRole()));
-
-
-		return new org.springframework.security.core.userdetails.User(user.getCorreoAccount(),
-				user.getPasswordAccount(),                        grantedAuthorities);*/
 	}
 
 }

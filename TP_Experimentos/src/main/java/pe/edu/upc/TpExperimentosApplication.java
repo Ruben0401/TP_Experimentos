@@ -22,11 +22,5 @@ public class TpExperimentosApplication {
 	
 	public void run(String... args) throws Exception {
 		
-		String password = "holamundo";
-
-		for (int i = 0; i < 1; i++) {
-			String bcryptPassword = passwordEncoder.encode(password);
-			System.out.println(bcryptPassword);
-		}
 	}
 }
