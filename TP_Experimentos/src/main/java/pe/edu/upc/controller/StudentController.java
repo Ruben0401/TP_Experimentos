@@ -45,20 +45,21 @@ public class StudentController {
 					return "student/student";
 				} 
 			}	
-					
+				
+			
 			if (student.getDateOfBirthStudent().before(student.getDateOfAdmissionStudent())) {	
 				
 				long edadEnDias = (student.getDateOfAdmissionStudent().getTime() - student.getDateOfBirthStudent().getTime())
                         / 1000 / 60 / 60 / 24;
 				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
 				
-				if (años >= 16) {
+				if (años >= 16 && años <= 85) {
 					sS.insert(student);
 					model.addAttribute("listTeachers", sS.list());
 					return "redirect:/students/list";
 				}
 				else {
-					model.addAttribute("mensaje", "La edad mínima es de 16 años");
+					model.addAttribute("mensaje", "La edad mínima es de 16 años y maxima de 85 años");
 					return "student/student";
 				}
 				}
