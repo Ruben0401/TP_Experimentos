@@ -50,7 +50,7 @@ public class TeacherController {
 				long edadEnDias = (teacher.getDateOfAdmissionTeacher().getTime() - teacher.getDateOfBirthTeacher().getTime())
                         / 1000 / 60 / 60 / 24;
 				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
-				if (años >= 23) {
+				if (años >= 23 && años <= 60) {
 					tS.insert(teacher);
 					model.addAttribute("listTeachers", tS.list());
 					return "redirect:/teachers/list";
@@ -126,7 +126,7 @@ public class TeacherController {
 					long edadEnDias = (teacher.getDateOfAdmissionTeacher().getTime() - teacher.getDateOfBirthTeacher().getTime())
 	                        / 1000 / 60 / 60 / 24;
 					int años = Double.valueOf(edadEnDias / 365.25d).intValue();
-					if (años >= 23) {
+					if (años >= 23 && años <= 60) {
 						tS.insert(teacher);
 						model.addAttribute("listTeachers", tS.list());
 						return "redirect:/teachers/list";

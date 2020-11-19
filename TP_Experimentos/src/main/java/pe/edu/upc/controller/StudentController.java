@@ -141,7 +141,7 @@ public class StudentController {
                         / 1000 / 60 / 60 / 24;
 				int años = Double.valueOf(edadEnDias / 365.25d).intValue();
 				
-				if (años >= 16) {
+				if (años >= 16 && años <= 85) {
 					sS.insert(student);
 					model.addAttribute("listTeachers", sS.list());
 					return "redirect:/students/list";
